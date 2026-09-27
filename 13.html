@@ -45,7 +45,36 @@
     .listen-btn { transition: opacity 0.15s; }
     .listen-btn.disabled { opacity: 0.5; pointer-events: none; }
     .card-clickable:hover { background: #ede9fe; }
-  </style>
+  
+/* ═══ EXPLANATION PAGES — portrait identical to legacy, landscape restructured ═══ */
+.expl-wrap { width:95%; max-width:90vw; display:flex; flex-direction:column; gap:1.5vh; }
+.expl-cards { display:flex; flex-direction:column; gap:1.5vh; }
+.expl-card { background:#f5f3ff; border:0.15vh solid #e9d5ff; border-radius:1.2vw; padding:2vh 3vw; display:flex; flex-direction:column; align-items:center; gap:0.8vh; box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08); }
+.expl-icon { font-size:clamp(1.5rem,max(3vw,3vh),2rem); color:#7c3aed; }
+.expl-ko { font-size:clamp(1.3rem,max(3.5vw,3.5vh),2.3rem); font-weight:700; text-align:center; }
+.expl-ko-sm { font-size:clamp(1.2rem,max(3vw,3vh),1.9rem); font-weight:700; }
+.expl-sub { font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem); font-weight:500; text-align:center; }
+.expl-sub2 { font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem); font-weight:500; text-align:center; color:#6b7280; font-style:italic; }
+.expl-text { font-size:clamp(0.9rem,max(2.3vw,2.3vh),1.3rem); font-weight:500; line-height:1.7; text-align:center; color:#1e1b2e; }
+@media (orientation: landscape) {
+  .expl-cards { flex-direction:row; flex-wrap:wrap; justify-content:center; align-items:stretch; }
+  .expl-cards.two > .expl-card { flex:1 1 38%; }
+  .expl-cards.three > .expl-card { flex:1 1 28%; }
+  .expl-card { padding:1.5vh 2vw; }
+  .expl-icon { font-size:clamp(1.1rem,min(max(3vw,3vh),3.6vh),2rem); }
+  .expl-ko { font-size:clamp(1.05rem,min(max(3.5vw,3.5vh),4.6vh),2.3rem); }
+  .expl-ko-sm { font-size:clamp(0.95rem,min(max(3vw,3vh),3.6vh),1.9rem); }
+  .expl-sub, .expl-sub2 { font-size:clamp(0.8rem,min(max(2.2vw,2.2vh),3vh),1.3rem); }
+  .expl-text { font-size:clamp(0.8rem,min(max(2.3vw,2.3vh),3.2vh),1.3rem); line-height:1.5; }
+}
+/* ═══ RÉCAP PAGE — uniform text cards ═══ */
+.recap-row { display:flex; align-items:stretch; justify-content:center; gap:0.8vw; width:100%; }
+.recap-card { background:#f5f3ff; border:0.15vh solid #e9d5ff; border-radius:1.2vw; padding:1.5vh 2vw; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5vh; box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08); width:24%; }
+.recap-ko { font-size:clamp(1.1rem,max(2.8vw,2.8vh),1.6rem); font-weight:700; text-align:center; }
+.recap-sub { font-size:clamp(0.75rem,max(1.8vw,1.8vh),0.95rem); font-weight:500; text-align:center; }
+.recap-vs { align-self:center; font-size:clamp(0.9rem,max(2vw,2vh),1.2rem); font-weight:900; color:#a78bfa; flex-shrink:0; }
+
+</style>
 </head>
 <body>
 
@@ -134,6 +163,7 @@
   <!-- ════════ PAGE 9 — REPEAT S3-1 ════════ -->
   <div class="page flex-col bg-violet-50" id="page-9">
 <div style="width:95%;max-width:90vw;display:flex;flex-direction:column;gap:1.5vh;">
+      <p class="expl-text">Dites jusqu’à quelle heure vous dormez en utilisant « 까지 ». Ici aussi, le nombre 10 peut désigner dix heures du matin comme dix heures du soir.</p>
       <p class="" style="font-size:clamp(0.9rem,max(2.3vw,2.3vh),1.3rem);font-weight:500;line-height:1.7;text-align:center;color:#1e1b2e;">Répétez après moi.</p>
       <div style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:0.8vh;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);width:100%;gap:1vh;">
         <p class="ko" style="font-size:clamp(1.3rem,max(3.5vw,3.5vh),2.3rem);font-weight:700;text-align:center;"><span class="text-red-500">열 시</span><span class="text-orange-500">까지</span> <span class="text-purple-600">자요</span>.</p>
@@ -161,148 +191,137 @@
 
   <!-- ════════ PAGE 3 — S1 EXPLANATION ════════ -->
   <div class="page flex-col bg-violet-50" id="page-3">
-<div style="width:95%;max-width:90vw;display:flex;flex-direction:column;gap:1.5vh;">
-      <div style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:0.8vh;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);">
-        <div style="display:inline-flex;align-items:flex-start;justify-content:center;">
-          <span class="ko" style="font-size:clamp(1.2rem,max(3vw,3vh),1.9rem);font-weight:700;">(temps) +&nbsp;</span>
-          <div style="display:flex;flex-direction:column;align-items:center;">
-            <span class="ko text-orange-500" style="font-size:clamp(1.2rem,max(3vw,3vh),1.9rem);font-weight:700;">에</span>
-            <span class="text-orange-500" style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;">particule</span>
+    <div class="expl-wrap">
+      <div class="expl-cards two">
+        <div class="expl-card">
+          <div style="display:inline-flex;align-items:flex-start;justify-content:center;">
+            <span class="ko expl-ko-sm">(temps) +&nbsp;</span>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <span class="ko expl-ko-sm text-orange-500">에</span>
+              <span class="expl-sub text-orange-500">particule</span>
+            </div>
+            <span class="ko expl-ko-sm">(action).</span>
           </div>
-          <span class="ko" style="font-size:clamp(1.2rem,max(3vw,3vh),1.9rem);font-weight:700;">(action).</span>
+        </div>
+        <div class="expl-card card-clickable" onclick="playClickAudio(3, 0)">
+          <div style="display:flex;align-items:center;gap:0.5vw;">
+            <i class="ph-fill ph-speaker-high expl-icon"></i>
+            <p class="ko expl-ko"><span class="text-red-500">열 시</span><span class="text-orange-500">에</span> <span class="text-purple-600">자요</span>.</p>
+          </div>
+          <p class="expl-sub"><span class="text-red-500">temps</span> <span class="text-orange-500">particule</span> <span class="text-purple-600">verbe</span></p>
+          <p class="expl-sub2">Je me couche à 10 h.</p>
         </div>
       </div>
-      <div class="card-clickable" onclick="playClickAudio(3, 0)" style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:0.8vh;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);">
-        <div style="display:flex;align-items:center;gap:0.5vw;">
-          <i class="ph-fill ph-speaker-high" style="font-size:clamp(1.5rem,max(3vw,3vh),2rem);color:#7c3aed;"></i>
-          <p class="ko" style="font-size:clamp(1.3rem,max(3.5vw,3.5vh),2.3rem);font-weight:700;text-align:center;text-align:center;"><span class="text-red-500">열 시</span><span class="text-orange-500">에</span> <span class="text-purple-600">자요</span>.</p>
-        </div>
-        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;"><span class="text-red-500">temps</span> <span class="text-orange-500">particule</span> <span class="text-purple-600">verbe</span></p>
-        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;color:#6b7280;font-style:italic;">Je me couche à 10 h.</p>
-      </div>
-      <p class="" style="font-size:clamp(0.9rem,max(2.3vw,2.3vh),1.3rem);font-weight:500;line-height:1.7;text-align:center;color:#1e1b2e;">Très bien ! Dans cette phrase, le verbe, c’est « 자다 » (dormir). Et cette action se déroule à « 열 시 » (10 heures). En coréen, on compte le temps par cycles de 12 heures : selon le contexte, « 열 시 » peut désigner 10 heures du matin ou 22 heures le soir. Pour indiquer le moment précis où se déroule une action, on ajoute la particule « 에 » après l’heure. Elle correspond à « à » en français.</p>
+      <p class="expl-text">Très bien ! Dans cette phrase, le verbe, c’est « 자다 » (dormir). Et cette action se déroule à « 열 시 » (10 heures). En coréen, on compte le temps par cycles de 12 heures : selon le contexte, « 열 시 » peut désigner 10 heures du matin ou 22 heures le soir. Pour indiquer le moment précis où se déroule une action, on ajoute la particule « 에 » après l’heure. Elle correspond à « à » en français.</p>
     </div>
     </div>
 
   <!-- ════════ PAGE 5 — S2 EXPLANATION ════════ -->
   <div class="page flex-col bg-violet-50" id="page-5">
-<div style="width:95%;max-width:90vw;display:flex;flex-direction:column;gap:1.5vh;">
-      <div style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:0.8vh;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);">
-        <div style="display:inline-flex;align-items:flex-start;justify-content:center;">
-          <span class="ko" style="font-size:clamp(1.2rem,max(3vw,3vh),1.9rem);font-weight:700;">nombre +&nbsp;</span>
-          <div style="display:flex;flex-direction:column;align-items:center;">
-            <span class="ko text-orange-500" style="font-size:clamp(1.2rem,max(3vw,3vh),1.9rem);font-weight:700;">시</span>
-            <span class="text-orange-500" style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;">heure pile (moment)</span>
+    <div class="expl-wrap">
+      <div class="expl-cards two">
+        <div class="expl-card">
+          <div style="display:inline-flex;align-items:flex-start;justify-content:center;">
+            <span class="ko expl-ko-sm">nombre +&nbsp;</span>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <span class="ko expl-ko-sm text-orange-500">시</span>
+              <span class="expl-sub text-orange-500">heure pile (moment)</span>
+            </div>
           </div>
-          <span class="ko" style="font-size:clamp(1.2rem,max(3vw,3vh),1.9rem);font-weight:700;"></span>
         </div>
-      </div>
-      <div class="card-clickable" onclick="playClickAudio(5, 0)" style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:0.8vh;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);">
-        <div style="display:flex;align-items:center;gap:0.5vw;">
-          <i class="ph-fill ph-speaker-high" style="font-size:clamp(1.5rem,max(3vw,3vh),2rem);color:#7c3aed;"></i>
-          <p class="ko" style="font-size:clamp(1.3rem,max(3.5vw,3.5vh),2.3rem);font-weight:700;text-align:center;text-align:center;"><span class="text-red-500">열</span> <span class="text-orange-500">시</span><span class="text-yellow-500">에</span></p>
-        </div>
-        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;"><span class="text-red-500">10</span> <span class="text-orange-500">heures</span> <span class="text-yellow-500">à</span></p>
-        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;color:#6b7280;font-style:italic;">à 10 h / 22 h</p>
-      </div>
-      <div style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:0.8vh;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);">
-        <div style="display:inline-flex;align-items:flex-start;justify-content:center;">
-          <span class="ko" style="font-size:clamp(1.2rem,max(3vw,3vh),1.9rem);font-weight:700;">nombre +&nbsp;</span>
-          <div style="display:flex;flex-direction:column;align-items:center;">
-            <span class="ko text-orange-500" style="font-size:clamp(1.2rem,max(3vw,3vh),1.9rem);font-weight:700;">시간</span>
-            <span class="text-orange-500" style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;">heure (durée)</span>
+        <div class="expl-card card-clickable" onclick="playClickAudio(5, 0)">
+          <div style="display:flex;align-items:center;gap:0.5vw;">
+            <i class="ph-fill ph-speaker-high expl-icon"></i>
+            <p class="ko expl-ko"><span class="text-red-500">열</span> <span class="text-orange-500">시</span><span class="text-yellow-500">에</span></p>
           </div>
-          <span class="ko" style="font-size:clamp(1.2rem,max(3vw,3vh),1.9rem);font-weight:700;"></span>
+          <p class="expl-sub"><span class="text-red-500">10</span> <span class="text-orange-500">heures</span> <span class="text-yellow-500">à</span></p>
+          <p class="expl-sub2">à 10 h / 22 h</p>
+        </div>
+        <div class="expl-card">
+          <div style="display:inline-flex;align-items:flex-start;justify-content:center;">
+            <span class="ko expl-ko-sm">nombre +&nbsp;</span>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <span class="ko expl-ko-sm text-orange-500">시간</span>
+              <span class="expl-sub text-orange-500">heure (durée)</span>
+            </div>
+          </div>
+        </div>
+        <div class="expl-card card-clickable" onclick="playClickAudio(5, 1)">
+          <div style="display:flex;align-items:center;gap:0.5vw;">
+            <i class="ph-fill ph-speaker-high expl-icon"></i>
+            <p class="ko expl-ko"><span class="text-red-500">열</span> <span class="text-orange-500">시간</span> <span class="text-yellow-500">동안</span></p>
+          </div>
+          <p class="expl-sub"><span class="text-red-500">10</span> <span class="text-orange-500">heures</span> <span class="text-yellow-500">pendant</span></p>
+          <p class="expl-sub2">pendant 10 heures</p>
         </div>
       </div>
-      <div class="card-clickable" onclick="playClickAudio(5, 1)" style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:0.8vh;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);">
-        <div style="display:flex;align-items:center;gap:0.5vw;">
-          <i class="ph-fill ph-speaker-high" style="font-size:clamp(1.5rem,max(3vw,3vh),2rem);color:#7c3aed;"></i>
-          <p class="ko" style="font-size:clamp(1.3rem,max(3.5vw,3.5vh),2.3rem);font-weight:700;text-align:center;text-align:center;"><span class="text-red-500">열</span> <span class="text-orange-500">시간</span> <span class="text-yellow-500">동안</span></p>
-        </div>
-        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;"><span class="text-red-500">10</span> <span class="text-orange-500">heures</span> <span class="text-yellow-500">pendant</span></p>
-        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;color:#6b7280;font-style:italic;">pendant 10 heures</p>
-      </div>
-      <p class="" style="font-size:clamp(0.9rem,max(2.3vw,2.3vh),1.3rem);font-weight:500;line-height:1.7;text-align:center;color:#1e1b2e;">Pour parler d’une durée, on dit « 시간 » au lieu de « 시 ». Comme il ne s’agit pas du moment où l’action se déroule, on n’utilise plus la particule « 에 ». En revanche, on peut construire la phrase avec « 동안 », qui correspond à « pendant ».</p>
+      <p class="expl-text">Pour parler d’une durée, on dit « 시간 » au lieu de « 시 ». Comme il ne s’agit pas du moment où l’action se déroule, on n’utilise plus la particule « 에 ». En revanche, on peut construire la phrase avec « 동안 », qui correspond à « pendant ».</p>
     </div>
     </div>
 
   <!-- ════════ PAGE 8 — S3 EXPLANATION ════════ -->
   <div class="page flex-col bg-violet-50" id="page-8">
-<div style="width:95%;max-width:90vw;display:flex;flex-direction:column;gap:1.5vh;">
-      <div class="card-clickable" onclick="playClickAudio(8, 0)" style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:0.8vh;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);">
-        <div style="display:flex;align-items:center;gap:0.5vw;">
-          <i class="ph-fill ph-speaker-high" style="font-size:clamp(1.5rem,max(3vw,3vh),2rem);color:#7c3aed;"></i>
-          <p class="ko" style="font-size:clamp(1.3rem,max(3.5vw,3.5vh),2.3rem);font-weight:700;text-align:center;text-align:center;"><span class="text-red-500">열</span> <span class="text-orange-500">시</span><span class="text-yellow-500">에</span></p>
+    <div class="expl-wrap">
+      <div class="expl-cards three">
+        <div class="expl-card card-clickable" onclick="playClickAudio(8, 0)">
+          <div style="display:flex;align-items:center;gap:0.5vw;">
+            <i class="ph-fill ph-speaker-high expl-icon"></i>
+            <p class="ko expl-ko"><span class="text-red-500">열</span> <span class="text-orange-500">시</span><span class="text-yellow-500">에</span></p>
+          </div>
+          <p class="expl-sub"><span class="text-red-500">10</span> <span class="text-orange-500">heures</span> <span class="text-yellow-500">à</span></p>
+          <p class="expl-sub2">à 10 h / 22 h</p>
         </div>
-        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;"><span class="text-red-500">10</span> <span class="text-orange-500">heures</span> <span class="text-yellow-500">à</span></p>
-        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;color:#6b7280;font-style:italic;">à 10 h / 22 h</p>
-      </div>
-      <div class="card-clickable" onclick="playClickAudio(8, 1)" style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:0.8vh;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);">
-        <div style="display:flex;align-items:center;gap:0.5vw;">
-          <i class="ph-fill ph-speaker-high" style="font-size:clamp(1.5rem,max(3vw,3vh),2rem);color:#7c3aed;"></i>
-          <p class="ko" style="font-size:clamp(1.3rem,max(3.5vw,3.5vh),2.3rem);font-weight:700;text-align:center;text-align:center;"><span class="text-red-500">열</span> <span class="text-orange-500">시간</span> <span class="text-yellow-500">동안</span></p>
+        <div class="expl-card card-clickable" onclick="playClickAudio(8, 1)">
+          <div style="display:flex;align-items:center;gap:0.5vw;">
+            <i class="ph-fill ph-speaker-high expl-icon"></i>
+            <p class="ko expl-ko"><span class="text-red-500">열</span> <span class="text-orange-500">시간</span> <span class="text-yellow-500">동안</span></p>
+          </div>
+          <p class="expl-sub"><span class="text-red-500">10</span> <span class="text-orange-500">heures</span> <span class="text-yellow-500">pendant</span></p>
+          <p class="expl-sub2">pendant 10 heures</p>
         </div>
-        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;"><span class="text-red-500">10</span> <span class="text-orange-500">heures</span> <span class="text-yellow-500">pendant</span></p>
-        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;color:#6b7280;font-style:italic;">pendant 10 heures</p>
-      </div>
-      <div class="card-clickable" onclick="playClickAudio(8, 2)" style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:0.8vh;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);">
-        <div style="display:flex;align-items:center;gap:0.5vw;">
-          <i class="ph-fill ph-speaker-high" style="font-size:clamp(1.5rem,max(3vw,3vh),2rem);color:#7c3aed;"></i>
-          <p class="ko" style="font-size:clamp(1.3rem,max(3.5vw,3.5vh),2.3rem);font-weight:700;text-align:center;text-align:center;"><span class="text-red-500">열</span> <span class="text-orange-500">시</span><span class="text-yellow-500">까지</span></p>
+        <div class="expl-card card-clickable" onclick="playClickAudio(8, 2)">
+          <div style="display:flex;align-items:center;gap:0.5vw;">
+            <i class="ph-fill ph-speaker-high expl-icon"></i>
+            <p class="ko expl-ko"><span class="text-red-500">열</span> <span class="text-orange-500">시</span><span class="text-yellow-500">까지</span></p>
+          </div>
+          <p class="expl-sub"><span class="text-red-500">10</span> <span class="text-orange-500">heures</span> <span class="text-yellow-500">jusqu'à</span></p>
+          <p class="expl-sub2">jusqu’à 10 heures</p>
         </div>
-        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;"><span class="text-red-500">10</span> <span class="text-orange-500">heures</span> <span class="text-yellow-500">jusqu'à</span></p>
-        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;color:#6b7280;font-style:italic;">jusqu’à 10 heures</p>
       </div>
-      <p class="" style="font-size:clamp(0.9rem,max(2.3vw,2.3vh),1.3rem);font-weight:500;line-height:1.7;text-align:center;color:#1e1b2e;">Génial ! Cette fois, considérez l’heure non pas comme le moment où l’action se déroule, mais comme le moment où elle se termine. Dans ce cas, on peut utiliser la particule « 까지 ». Comme « 10 heures » désigne un moment, on dit « 열 시 ».</p>
+      <p class="expl-text">Génial ! Cette fois, considérez l’heure non pas comme le moment où l’action se déroule, mais comme le moment où elle se termine. Dans ce cas, on peut utiliser la particule « 까지 ». Comme « 10 heures » désigne un moment, on dit « 열 시 ».</p>
     </div>
     </div>
 
   <!-- ════════ PAGE 11 — RÉCAP ════════ -->
   <div class="page flex-col bg-violet-50" id="page-11">
-<div style="width:95%;max-width:90vw;display:flex;flex-direction:column;gap:1.5vh;">
-      <p class="" style="font-size:clamp(0.9rem,max(2.3vw,2.3vh),1.3rem);font-weight:500;line-height:1.7;text-align:center;color:#1e1b2e;">Aujourd’hui, nous avons appris divers mots et particules qui s’utilisent dans des situations similaires. Retenez-les bien pour ne pas les confondre !</p>
-      <div style="display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:0.8vw;width:100%;">
-        <div class="card-clickable" onclick="playClickAudio(11, 0)" style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:0.8vh;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);flex:1;min-width:20vw;padding:1.5vh 2vw;gap:0.5vh;">
-          <div style="display:flex;align-items:center;gap:0.5vw;">
-            <i class="ph-fill ph-speaker-high" style="font-size:clamp(1.1rem,max(2.2vw,2.2vh),1.5rem);color:#7c3aed;"></i>
-            <p class="ko" style="font-size:clamp(1.1rem,max(2.8vw,2.8vh),1.6rem);font-weight:700;text-align:center;">시</p>
+    <div class="expl-wrap">
+      <p class="expl-text">Aujourd’hui, nous avons appris divers mots et particules qui s’utilisent dans des situations similaires. Retenez-les bien pour ne pas les confondre !</p>
+      <div class="recap-row">
+          <div class="recap-card">
+            <p class="ko recap-ko">시</p>
+            <p class="recap-sub">heure (moment)</p>
           </div>
-          <p style="font-size:clamp(0.75rem,max(1.8vw,1.8vh),0.95rem);font-weight:500;text-align:center;">heure (moment)</p>
-        </div>
-<span style="align-self:center;font-size:clamp(0.9rem,max(2vw,2vh),1.2rem);font-weight:900;color:#a78bfa;flex-shrink:0;">vs</span>
-        <div class="card-clickable" onclick="playClickAudio(11, 1)" style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:0.8vh;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);flex:1;min-width:20vw;padding:1.5vh 2vw;gap:0.5vh;">
-          <div style="display:flex;align-items:center;gap:0.5vw;">
-            <i class="ph-fill ph-speaker-high" style="font-size:clamp(1.1rem,max(2.2vw,2.2vh),1.5rem);color:#7c3aed;"></i>
-            <p class="ko" style="font-size:clamp(1.1rem,max(2.8vw,2.8vh),1.6rem);font-weight:700;text-align:center;">시간</p>
+          <span class="recap-vs">vs</span>
+          <div class="recap-card">
+            <p class="ko recap-ko">시간</p>
+            <p class="recap-sub">heure (durée)</p>
           </div>
-          <p style="font-size:clamp(0.75rem,max(1.8vw,1.8vh),0.95rem);font-weight:500;text-align:center;">heure (durée)</p>
-        </div>
       </div>
-      <div style="display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:0.8vw;width:100%;">
-        <div class="card-clickable" onclick="playClickAudio(11, 2)" style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:0.8vh;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);flex:1;min-width:20vw;padding:1.5vh 2vw;gap:0.5vh;">
-          <div style="display:flex;align-items:center;gap:0.5vw;">
-            <i class="ph-fill ph-speaker-high" style="font-size:clamp(1.1rem,max(2.2vw,2.2vh),1.5rem);color:#7c3aed;"></i>
-            <p class="ko" style="font-size:clamp(1.1rem,max(2.8vw,2.8vh),1.6rem);font-weight:700;text-align:center;">에</p>
+      <div class="recap-row">
+          <div class="recap-card">
+            <p class="ko recap-ko">에</p>
+            <p class="recap-sub">à (moment)</p>
           </div>
-          <p style="font-size:clamp(0.75rem,max(1.8vw,1.8vh),0.95rem);font-weight:500;text-align:center;">à (moment)</p>
-        </div>
-<span style="align-self:center;font-size:clamp(0.9rem,max(2vw,2vh),1.2rem);font-weight:900;color:#a78bfa;flex-shrink:0;">vs</span>
-        <div class="card-clickable" onclick="playClickAudio(11, 3)" style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:0.8vh;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);flex:1;min-width:20vw;padding:1.5vh 2vw;gap:0.5vh;">
-          <div style="display:flex;align-items:center;gap:0.5vw;">
-            <i class="ph-fill ph-speaker-high" style="font-size:clamp(1.1rem,max(2.2vw,2.2vh),1.5rem);color:#7c3aed;"></i>
-            <p class="ko" style="font-size:clamp(1.1rem,max(2.8vw,2.8vh),1.6rem);font-weight:700;text-align:center;">동안</p>
+          <span class="recap-vs">vs</span>
+          <div class="recap-card">
+            <p class="ko recap-ko">동안</p>
+            <p class="recap-sub">pendant (durée)</p>
           </div>
-          <p style="font-size:clamp(0.75rem,max(1.8vw,1.8vh),0.95rem);font-weight:500;text-align:center;">pendant (durée)</p>
-        </div>
-<span style="align-self:center;font-size:clamp(0.9rem,max(2vw,2vh),1.2rem);font-weight:900;color:#a78bfa;flex-shrink:0;">vs</span>
-        <div class="card-clickable" onclick="playClickAudio(11, 4)" style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:0.8vh;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);flex:1;min-width:20vw;padding:1.5vh 2vw;gap:0.5vh;">
-          <div style="display:flex;align-items:center;gap:0.5vw;">
-            <i class="ph-fill ph-speaker-high" style="font-size:clamp(1.1rem,max(2.2vw,2.2vh),1.5rem);color:#7c3aed;"></i>
-            <p class="ko" style="font-size:clamp(1.1rem,max(2.8vw,2.8vh),1.6rem);font-weight:700;text-align:center;">까지</p>
+          <span class="recap-vs">vs</span>
+          <div class="recap-card">
+            <p class="ko recap-ko">까지</p>
+            <p class="recap-sub">jusqu'à (limite)</p>
           </div>
-          <p style="font-size:clamp(0.75rem,max(1.8vw,1.8vh),0.95rem);font-weight:500;text-align:center;">jusqu'à (limite)</p>
-        </div>
       </div>
     </div>
     </div>
@@ -450,7 +469,6 @@ const CLICK_AUDIO = {
   3: S1_URL,
   5: [S1_URL, S2_URL],
   8: [S1_URL, S2_URL, S3_URL],
-  11: [S1_URL, S2_URL, S1_URL, S2_URL, S3_URL],
 };
 
 const SENTENCE_AUDIO = {
@@ -461,29 +479,29 @@ const SENTENCE_AUDIO = {
 
 const EXERCISES = {
   2: { type: 'repeat', maxAttempts: 1, expected: '열 시에 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
+        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
   4: { type: 'repeat', maxAttempts: 1, expected: '열 시에 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
+        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
   6: { type: 'repeat', maxAttempts: 1, expected: '열 시간 동안 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
+        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
   7: { type: 'repeat', maxAttempts: 1, expected: '열 시간 동안 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
+        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
   9: { type: 'repeat', maxAttempts: 1, expected: '열 시까지 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
+        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
   10: { type: 'repeat', maxAttempts: 1, expected: '열 시까지 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
+        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
   12: { type: 'hide', maxAttempts: 2, expected: '열 시에 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
+        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
   13: { type: 'hide', maxAttempts: 2, expected: '열 시간 동안 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
+        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
   14: { type: 'hide', maxAttempts: 2, expected: '열 시까지 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
+        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
   15: { type: 'trad', maxAttempts: 2, expected: '열 시에 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
+        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
   16: { type: 'trad', maxAttempts: 2, expected: '열 시간 동안 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
+        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
   17: { type: 'trad', maxAttempts: 2, expected: '열 시까지 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
+        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
 };
 const MSG = {
   SUCCESS_RETRY: 'Très bien, essayons encore une fois.',
@@ -861,8 +879,36 @@ function levenshtein(a, b) {
   return prev[n];
 }
 
+function numToHangul(txt) {
+  const ones = ['','하나','둘','셋','넷','다섯','여섯','일곱','여덟','아홉'];
+  const tens = ['','열','스물','서른','마흔','쉰','예순','일흔','여든','아흔'];
+  const sinoDigits = ['','일','이','삼','사','오','육','칠','팔','구'];
+  function sino(n) {
+    if (n === 0) return '영';
+    const units = [[100000000,'억'],[10000,'만'],[1000,'천'],[100,'백'],[10,'십']];
+    let out = '';
+    for (const [v, name] of units) {
+      const q = Math.floor(n / v);
+      if (q > 0) { out += sinoSmall(q) + name; n -= q * v; }
+    }
+    return out + sinoSmall(n);
+  }
+  function sinoSmall(n) {
+    if (n === 0) return '';
+    return String(n).split('').map(d => sinoDigits[+d]).join('');
+  }
+  return (txt || '').replace(/\d+/g, m => {
+    const n = parseInt(m, 10);
+    if (n >= 1 && n <= 99) {
+      const t = Math.floor(n / 10), o = n % 10;
+      return (tens[t] || '') + (ones[o] || '');
+    }
+    return sino(n);
+  });
+}
+
 function jamoSimilarity(expected, actual) {
-  const e = decomposeJamo(expected), a = decomposeJamo(actual);
+  const e = decomposeJamo(numToHangul(expected)), a = decomposeJamo(numToHangul(actual));
   if (e.length === 0 && a.length === 0) return 100;
   if (e.length === 0 || a.length === 0) return 0;
   const dist = levenshtein(e, a);
