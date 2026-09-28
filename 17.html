@@ -2,6 +2,18 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <script>
+  // ================================================================
+  // 한국어 발음 오디오 — 녹음 완료 후 링크 추가 시 자동 연동
+  // ================================================================
+  const audioMap = {
+      '저녁에 식당에서 식사를 해요.': 'https://res.cloudinary.com/de76i94ia/video/upload/v1790096883/C5S1-F_dh9ks3.mp3',
+      '고기를 먹어요?': 'https://res.cloudinary.com/de76i94ia/video/upload/v1790097740/C5S2-2F_pguvk7.mp3',
+      '고기도 먹어요?': 'https://res.cloudinary.com/de76i94ia/video/upload/v1790096885/C5S2-F_prn5iq.mp3',
+      '채소를 먹어요.': 'https://res.cloudinary.com/de76i94ia/video/upload/v1790097744/C5S3-2F_u4llcu.mp3',
+      '채소만 먹어요.': 'https://res.cloudinary.com/de76i94ia/video/upload/v1790096887/C5S3-F_ntioo2.mp3',
+  };
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Enrichir son expression (2) — Chapitre 5 — Leçon 17</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -346,9 +358,6 @@
    CONFIG
    ═══════════════════════════════════════ */
 const GEMINI_URL = 'https://coreeno.base44.app/api/functions/Geminichat';
-const S1_URL = 'https://res.cloudinary.com/de76i94ia/video/upload/v1790096883/C5S1-F_dh9ks3.mp3';
-const S2_URL = 'https://res.cloudinary.com/de76i94ia/video/upload/v1790096885/C5S2-F_prn5iq.mp3';
-const S3_URL = 'https://res.cloudinary.com/de76i94ia/video/upload/v1790096887/C5S3-F_ntioo2.mp3';
 const TOTAL_PAGES = 18; // Syllabus P1-P16
 
 const PAGE_AUDIO = {
@@ -372,20 +381,20 @@ const PAGE_AUDIO = {
 };
 
 const CARD_AUDIO = {
-  2: S1_URL, 4: S1_URL, 5: S2_URL, 7: S2_URL, 8: S3_URL, 10: S3_URL,
-  11: S1_URL, 12: S2_URL, 13: S3_URL,
+  2: audioMap['저녁에 식당에서 식사를 해요.'], 4: audioMap['저녁에 식당에서 식사를 해요.'], 5: audioMap['고기도 먹어요?'], 7: audioMap['고기도 먹어요?'], 8: audioMap['채소만 먹어요.'], 10: audioMap['채소만 먹어요.'],
+  11: audioMap['저녁에 식당에서 식사를 해요.'], 12: audioMap['고기도 먹어요?'], 13: audioMap['채소만 먹어요.'],
 };
 
 const CLICK_AUDIO = {
-  3: S1_URL,
-  6: ['https://res.cloudinary.com/de76i94ia/video/upload/v1790097740/C5S2-2F_pguvk7.mp3', S2_URL],
-  9: ['https://res.cloudinary.com/de76i94ia/video/upload/v1790097744/C5S3-2F_u4llcu.mp3', S3_URL],
+  3: audioMap['저녁에 식당에서 식사를 해요.'],
+  6: [audioMap['고기를 먹어요?'], audioMap['고기도 먹어요?']],
+  9: [audioMap['채소를 먹어요.'], audioMap['채소만 먹어요.']],
 };
 
 const SENTENCE_AUDIO = {
-  14: S1_URL,
-  15: S2_URL,
-  16: S3_URL,
+  14: audioMap['저녁에 식당에서 식사를 해요.'],
+  15: audioMap['고기도 먹어요?'],
+  16: audioMap['채소만 먹어요.'],
 };
 
 const EXERCISES = {
