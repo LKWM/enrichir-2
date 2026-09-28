@@ -222,21 +222,27 @@
   <div class="page flex-col bg-violet-50" id="page-5">
     <div class="expl-wrap">
       <div class="expl-cards two">
-        <div class="expl-card">
-          <p class="ko expl-ko">nombre + <span class="text-orange-500">시</span></p>
+          <div class="expl-card card-clickable" onclick="playClickAudio(5, 0)">
+          <div style="display:flex;align-items:center;gap:0.5vw;">
+            <i class="ph-fill ph-speaker-high expl-icon"></i>
+            <p class="ko expl-ko">nombre + <span class="text-orange-500">시</span></p>
           <p class="expl-sub text-orange-500">heure pile (moment)</p>
         </div>
         <div class="expl-card">
                     <p class="ko expl-ko"><span class="text-red-500">열</span> <span class="text-orange-500">시</span><span class="text-yellow-500">에</span></p>
+          </div>
           <p class="expl-sub"><span class="text-red-500">10</span> <span class="text-orange-500">heures</span> <span class="text-yellow-500">à</span></p>
           <p class="expl-sub2">à 10 h / 22 h</p>
         </div>
-        <div class="expl-card">
-          <p class="ko expl-ko">nombre + <span class="text-orange-500">시간</span></p>
+          <div class="expl-card card-clickable" onclick="playClickAudio(5, 1)">
+          <div style="display:flex;align-items:center;gap:0.5vw;">
+            <i class="ph-fill ph-speaker-high expl-icon"></i>
+            <p class="ko expl-ko">nombre + <span class="text-orange-500">시간</span></p>
           <p class="expl-sub text-orange-500">heure (durée)</p>
         </div>
         <div class="expl-card">
                     <p class="ko expl-ko"><span class="text-red-500">열</span> <span class="text-orange-500">시간</span> <span class="text-yellow-500">동안</span></p>
+          </div>
           <p class="expl-sub"><span class="text-red-500">10</span> <span class="text-orange-500">heures</span> <span class="text-yellow-500">pendant</span></p>
           <p class="expl-sub2">pendant 10 heures</p>
         </div>
@@ -249,18 +255,27 @@
   <div class="page flex-col bg-violet-50" id="page-8">
     <div class="expl-wrap">
       <div class="expl-cards three">
-        <div class="expl-card">
-                    <p class="ko expl-ko"><span class="text-red-500">열</span> <span class="text-orange-500">시</span><span class="text-yellow-500">에</span></p>
+          <div class="expl-card card-clickable" onclick="playClickAudio(8, 0)">
+          <div style="display:flex;align-items:center;gap:0.5vw;">
+            <i class="ph-fill ph-speaker-high expl-icon"></i>
+            <p class="ko expl-ko"><span class="text-red-500">열</span> <span class="text-orange-500">시</span><span class="text-yellow-500">에</span></p>
+          </div>
           <p class="expl-sub"><span class="text-red-500">10</span> <span class="text-orange-500">heures</span> <span class="text-yellow-500">à</span></p>
           <p class="expl-sub2">à 10 h / 22 h</p>
         </div>
-        <div class="expl-card">
-                    <p class="ko expl-ko"><span class="text-red-500">열</span> <span class="text-orange-500">시간</span> <span class="text-yellow-500">동안</span></p>
+          <div class="expl-card card-clickable" onclick="playClickAudio(8, 1)">
+          <div style="display:flex;align-items:center;gap:0.5vw;">
+            <i class="ph-fill ph-speaker-high expl-icon"></i>
+            <p class="ko expl-ko"><span class="text-red-500">열</span> <span class="text-orange-500">시간</span> <span class="text-yellow-500">동안</span></p>
+          </div>
           <p class="expl-sub"><span class="text-red-500">10</span> <span class="text-orange-500">heures</span> <span class="text-yellow-500">pendant</span></p>
           <p class="expl-sub2">pendant 10 heures</p>
         </div>
-        <div class="expl-card">
-                    <p class="ko expl-ko"><span class="text-red-500">열</span> <span class="text-orange-500">시</span><span class="text-yellow-500">까지</span></p>
+          <div class="expl-card card-clickable" onclick="playClickAudio(8, 2)">
+          <div style="display:flex;align-items:center;gap:0.5vw;">
+            <i class="ph-fill ph-speaker-high expl-icon"></i>
+            <p class="ko expl-ko"><span class="text-red-500">열</span> <span class="text-orange-500">시</span><span class="text-yellow-500">까지</span></p>
+          </div>
           <p class="expl-sub"><span class="text-red-500">10</span> <span class="text-orange-500">heures</span> <span class="text-yellow-500">jusqu'à</span></p>
           <p class="expl-sub2">jusqu’à 10 heures</p>
         </div>
@@ -414,6 +429,17 @@ const GEMINI_URL = 'https://coreeno.base44.app/api/functions/Geminichat';
 const S1_URL = 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286214/C4S1-F_m2iwfb.mp3';
 const S2_URL = 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286221/C4S2-F_ctf2ng.mp3';
 const S3_URL = 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286218/C4S3-F_ahngqt.mp3';
+/* ═══════════════════════════════════════
+   AUDIO LIST — Card with text&audio(click) 카드 오디오 전체 목록
+   빈 값('') = 아직 녹음되지 않은 오디오. Cloudinary 링크를 넣으면 해당 카드에 자동 연동됨.
+   ═══════════════════════════════════════ */
+const AUDIO_LIST = {
+  '열 시에 자요.': S1_URL,   // Page 4 카드 — 녹음 완료 (C4S1-F, 노션 콜아웃)
+  '열 시에': '',             // Page 6 카드 1 / Page 9 카드 1 — 녹음 필요
+  '열 시간 동안': '',        // Page 6 카드 2 / Page 9 카드 2 — 녹음 필요
+  '열 시까지': '',           // Page 9 카드 3 — 녹음 필요
+};
+
 const TOTAL_PAGES = 19; // Syllabus P1-P16
 
 const PAGE_AUDIO = {
@@ -443,7 +469,9 @@ const CARD_AUDIO = {
 };
 
 const CLICK_AUDIO = {
-  3: S1_URL,
+  3: AUDIO_LIST['열 시에 자요.'],
+  5: [AUDIO_LIST['열 시에'], AUDIO_LIST['열 시간 동안']],
+  8: [AUDIO_LIST['열 시에'], AUDIO_LIST['열 시간 동안'], AUDIO_LIST['열 시까지']],
 };
 
 const SENTENCE_AUDIO = {
