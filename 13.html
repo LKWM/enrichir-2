@@ -58,6 +58,7 @@
 .expl-text { font-size:clamp(0.9rem,max(2.3vw,2.3vh),1.3rem); font-weight:500; line-height:1.7; text-align:center; color:#1e1b2e; }
 @media (orientation: landscape) {
   .expl-cards { flex-direction:row; flex-wrap:wrap; justify-content:center; align-items:stretch; }
+  .expl-cards.stack { flex-direction:column; }
   .expl-cards.two > .expl-card { flex:1 1 38%; }
   .expl-cards.three > .expl-card { flex:1 1 28%; }
   .expl-card { padding:1.5vh 2vw; }
@@ -163,7 +164,7 @@
   <!-- ════════ PAGE 9 — REPEAT S3-1 ════════ -->
   <div class="page flex-col bg-violet-50" id="page-9">
 <div style="width:95%;max-width:90vw;display:flex;flex-direction:column;gap:1.5vh;">
-      <p class="expl-text">Dites jusqu’à quelle heure vous dormez en utilisant « 까지 ». Ici aussi, le nombre 10 peut désigner dix heures du matin comme dix heures du soir.</p>
+      <p class="expl-text">Dites jusqu’à quelle heure vous dormez en utilisant « 까지 ». Ici aussi, le nombre 10 peut désigner dix heures du matin ou dix heures du soir.</p>
       <p class="" style="font-size:clamp(0.9rem,max(2.3vw,2.3vh),1.3rem);font-weight:500;line-height:1.7;text-align:center;color:#1e1b2e;">Répétez après moi.</p>
       <div style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:0.8vh;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);width:100%;gap:1vh;">
         <p class="ko" style="font-size:clamp(1.3rem,max(3.5vw,3.5vh),2.3rem);font-weight:700;text-align:center;"><span class="text-red-500">열 시</span><span class="text-orange-500">까지</span> <span class="text-purple-600">자요</span>.</p>
@@ -192,7 +193,7 @@
   <!-- ════════ PAGE 3 — S1 EXPLANATION ════════ -->
   <div class="page flex-col bg-violet-50" id="page-3">
     <div class="expl-wrap">
-      <div class="expl-cards two">
+      <div class="expl-cards stack">
         <div class="expl-card">
           <div style="display:inline-flex;align-items:flex-start;justify-content:center;">
             <span class="ko expl-ko-sm">(temps) +&nbsp;</span>
@@ -221,13 +222,8 @@
     <div class="expl-wrap">
       <div class="expl-cards two">
         <div class="expl-card">
-          <div style="display:inline-flex;align-items:flex-start;justify-content:center;">
-            <span class="ko expl-ko-sm">nombre +&nbsp;</span>
-            <div style="display:flex;flex-direction:column;align-items:center;">
-              <span class="ko expl-ko-sm text-orange-500">시</span>
-              <span class="expl-sub text-orange-500">heure pile (moment)</span>
-            </div>
-          </div>
+          <p class="ko expl-ko">nombre + <span class="text-orange-500">시</span></p>
+          <p class="expl-sub text-orange-500">heure pile (moment)</p>
         </div>
         <div class="expl-card card-clickable" onclick="playClickAudio(5, 0)">
           <div style="display:flex;align-items:center;gap:0.5vw;">
@@ -238,13 +234,8 @@
           <p class="expl-sub2">à 10 h / 22 h</p>
         </div>
         <div class="expl-card">
-          <div style="display:inline-flex;align-items:flex-start;justify-content:center;">
-            <span class="ko expl-ko-sm">nombre +&nbsp;</span>
-            <div style="display:flex;flex-direction:column;align-items:center;">
-              <span class="ko expl-ko-sm text-orange-500">시간</span>
-              <span class="expl-sub text-orange-500">heure (durée)</span>
-            </div>
-          </div>
+          <p class="ko expl-ko">nombre + <span class="text-orange-500">시간</span></p>
+          <p class="expl-sub text-orange-500">heure (durée)</p>
         </div>
         <div class="expl-card card-clickable" onclick="playClickAudio(5, 1)">
           <div style="display:flex;align-items:center;gap:0.5vw;">
@@ -299,28 +290,28 @@
       <div class="recap-row">
           <div class="recap-card">
             <p class="ko recap-ko">시</p>
-            <p class="recap-sub">heure (moment)</p>
+            <p class="recap-sub">heure<br>(moment)</p>
           </div>
           <span class="recap-vs">vs</span>
           <div class="recap-card">
             <p class="ko recap-ko">시간</p>
-            <p class="recap-sub">heure (durée)</p>
+            <p class="recap-sub">heure<br>(durée)</p>
           </div>
       </div>
       <div class="recap-row">
           <div class="recap-card">
             <p class="ko recap-ko">에</p>
-            <p class="recap-sub">à (moment)</p>
+            <p class="recap-sub">à<br>(moment)</p>
           </div>
           <span class="recap-vs">vs</span>
           <div class="recap-card">
             <p class="ko recap-ko">동안</p>
-            <p class="recap-sub">pendant (durée)</p>
+            <p class="recap-sub">pendant<br>(durée)</p>
           </div>
           <span class="recap-vs">vs</span>
           <div class="recap-card">
             <p class="ko recap-ko">까지</p>
-            <p class="recap-sub">jusqu'à (limite)</p>
+            <p class="recap-sub">jusqu'à<br>(limite)</p>
           </div>
       </div>
     </div>
