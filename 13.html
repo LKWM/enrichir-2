@@ -2,6 +2,17 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <script>
+  // ================================================================
+  // 한국어 발음 오디오 — 녹음 완료 후 링크 추가 시 자동 연동
+  // ================================================================
+  const audioMap = {
+      '열 시에 자요.': 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286214/C4S1-F_m2iwfb.mp3',
+      '열 시에': '',
+      '열 시간 동안': '',
+      '열 시까지': '',
+  };
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Enrichir son expression (2) — Chapitre 4 — Leçon 13</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -429,17 +440,6 @@ const GEMINI_URL = 'https://coreeno.base44.app/api/functions/Geminichat';
 const S1_URL = 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286214/C4S1-F_m2iwfb.mp3';
 const S2_URL = 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286221/C4S2-F_ctf2ng.mp3';
 const S3_URL = 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286218/C4S3-F_ahngqt.mp3';
-/* ═══════════════════════════════════════
-   AUDIO LIST — Card with text&audio(click) 카드 오디오 전체 목록
-   빈 값('') = 아직 녹음되지 않은 오디오. Cloudinary 링크를 넣으면 해당 카드에 자동 연동됨.
-   ═══════════════════════════════════════ */
-const AUDIO_LIST = {
-  '열 시에 자요.': S1_URL,   // Page 4 카드 — 녹음 완료 (C4S1-F, 노션 콜아웃)
-  '열 시에': '',             // Page 6 카드 1 / Page 9 카드 1 — 녹음 필요
-  '열 시간 동안': '',        // Page 6 카드 2 / Page 9 카드 2 — 녹음 필요
-  '열 시까지': '',           // Page 9 카드 3 — 녹음 필요
-};
-
 const TOTAL_PAGES = 19; // Syllabus P1-P16
 
 const PAGE_AUDIO = {
@@ -469,9 +469,9 @@ const CARD_AUDIO = {
 };
 
 const CLICK_AUDIO = {
-  3: AUDIO_LIST['열 시에 자요.'],
-  5: [AUDIO_LIST['열 시에'], AUDIO_LIST['열 시간 동안']],
-  8: [AUDIO_LIST['열 시에'], AUDIO_LIST['열 시간 동안'], AUDIO_LIST['열 시까지']],
+  3: audioMap['열 시에 자요.'],
+  5: [audioMap['열 시에'], audioMap['열 시간 동안']],
+  8: [audioMap['열 시에'], audioMap['열 시간 동안'], audioMap['열 시까지']],
 };
 
 const SENTENCE_AUDIO = {
