@@ -7,6 +7,12 @@
   // 한국어 발음 오디오 — 녹음 완료 후 링크 추가 시 자동 연동
   // ================================================================
   const audioMap = {
+      '열 시에 자요.': 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286214/C4S1-F_m2iwfb.mp3',
+      '열 시간 동안 자요.': 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286221/C4S2-F_ctf2ng.mp3',
+      '열 시까지 자요.': 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286218/C4S3-F_ahngqt.mp3',
+      '열 시에': '',
+      '열 시간 동안': '',
+      '열 시까지': '',
       'C4L13-1': 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286213/C4L13-1_mi0grg.mp3',
       'C4L13-2': 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286217/C4L13-2_kje9os.mp3',
       'C4L13-3': 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286219/C4L13-3_vrdvn2.mp3',
@@ -25,12 +31,6 @@
       'C1L1-13': 'https://res.cloudinary.com/de76i94ia/video/upload/v1782504921/C1L1-13_gv22h7.mp3',
       'C1L1-14': 'https://res.cloudinary.com/de76i94ia/video/upload/v1782504921/C1L1-14_x9rv3n.mp3',
       'C4L13-18': 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286228/C4L13-18_wbsbfa.mp3',
-      'C4S1-F': 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286214/C4S1-F_m2iwfb.mp3',
-      'C4S2-F': 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286221/C4S2-F_ctf2ng.mp3',
-      'C4S3-F': 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286218/C4S3-F_ahngqt.mp3',
-      '열 시에': '',
-      '열 시간 동안': '',
-      '열 시까지': '',
   };
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -481,20 +481,20 @@ const PAGE_AUDIO = {
 };
 
 const CARD_AUDIO = {
-  2: audioMap['C4S1-F'], 4: audioMap['C4S1-F'], 6: audioMap['C4S2-F'], 7: audioMap['C4S2-F'], 9: audioMap['C4S3-F'], 10: audioMap['C4S3-F'],
-  12: audioMap['C4S1-F'], 13: audioMap['C4S2-F'], 14: audioMap['C4S3-F'],
+  2: audioMap['열 시에 자요.'], 4: audioMap['열 시에 자요.'], 6: audioMap['열 시간 동안 자요.'], 7: audioMap['열 시간 동안 자요.'], 9: audioMap['열 시까지 자요.'], 10: audioMap['열 시까지 자요.'],
+  12: audioMap['열 시에 자요.'], 13: audioMap['열 시간 동안 자요.'], 14: audioMap['열 시까지 자요.'],
 };
 
 const CLICK_AUDIO = {
-  3: audioMap['C4S1-F'],
+  3: audioMap['열 시에 자요.'],
   5: [audioMap['열 시에'], audioMap['열 시간 동안']],
   8: [audioMap['열 시에'], audioMap['열 시간 동안'], audioMap['열 시까지']],
 };
 
 const SENTENCE_AUDIO = {
-  15: audioMap['C4S1-F'],
-  16: audioMap['C4S2-F'],
-  17: audioMap['C4S3-F'],
+  15: audioMap['열 시에 자요.'],
+  16: audioMap['열 시간 동안 자요.'],
+  17: audioMap['열 시까지 자요.'],
 };
 
 const EXERCISES = {
