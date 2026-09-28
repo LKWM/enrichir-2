@@ -8,6 +8,8 @@
   // ================================================================
   const audioMap = {
       '열 시에 자요.': 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286214/C4S1-F_m2iwfb.mp3',
+      '열 시간 동안 자요.': 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286221/C4S2-F_ctf2ng.mp3',
+      '열 시까지 자요.': 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286218/C4S3-F_ahngqt.mp3',
       '열 시에': '',
       '열 시간 동안': '',
       '열 시까지': '',
@@ -437,9 +439,6 @@
    CONFIG
    ═══════════════════════════════════════ */
 const GEMINI_URL = 'https://coreeno.base44.app/api/functions/Geminichat';
-const S1_URL = 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286214/C4S1-F_m2iwfb.mp3';
-const S2_URL = 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286221/C4S2-F_ctf2ng.mp3';
-const S3_URL = 'https://res.cloudinary.com/de76i94ia/video/upload/v1789286218/C4S3-F_ahngqt.mp3';
 const TOTAL_PAGES = 19; // Syllabus P1-P16
 
 const PAGE_AUDIO = {
@@ -464,8 +463,8 @@ const PAGE_AUDIO = {
 };
 
 const CARD_AUDIO = {
-  2: S1_URL, 4: S1_URL, 6: S2_URL, 7: S2_URL, 9: S3_URL, 10: S3_URL,
-  12: S1_URL, 13: S2_URL, 14: S3_URL,
+  2: audioMap['열 시에 자요.'], 4: audioMap['열 시에 자요.'], 6: audioMap['열 시간 동안 자요.'], 7: audioMap['열 시간 동안 자요.'], 9: audioMap['열 시까지 자요.'], 10: audioMap['열 시까지 자요.'],
+  12: audioMap['열 시에 자요.'], 13: audioMap['열 시간 동안 자요.'], 14: audioMap['열 시까지 자요.'],
 };
 
 const CLICK_AUDIO = {
@@ -475,9 +474,9 @@ const CLICK_AUDIO = {
 };
 
 const SENTENCE_AUDIO = {
-  15: S1_URL,
-  16: S2_URL,
-  17: S3_URL,
+  15: audioMap['열 시에 자요.'],
+  16: audioMap['열 시간 동안 자요.'],
+  17: audioMap['열 시까지 자요.'],
 };
 
 const EXERCISES = {
