@@ -606,7 +606,7 @@ function goToPage(n) {
 }
 
 function nextPage() {
-  if (currentPage < 19) goToPage(currentPage + 1);
+  if (currentPage < 24) goToPage(currentPage + 1);
 }
 
 function prevPage() {
@@ -647,7 +647,7 @@ function updateBottomBar() {
    ═══════════════════════════════════════ */
 function handlePageEnter(n) {
   // Outro page
-  if (n === 19) {
+  if (n === 24) {
     playSfx('end');
     setTimeout(() => triggerLessonComplete(), 500);
     return;
