@@ -14,9 +14,9 @@
       '먹다': 'https://res.cloudinary.com/de76i94ia/video/upload/v1779014039/%E1%84%86%E1%85%A5%E1%86%A8%E1%84%83%E1%85%A1_zct1kq.mp3',
       '채소': '',
       '배우다': '',
-      '좋아하다': 'https://res.cloudinary.com/de76i94ia/video/upload/v1776841131/%E1%84%8C%E1%85%A9%E1%87%82v_e99wcc.mp3',
+      '좋아하다': '',
       '쓰다': 'https://res.cloudinary.com/de76i94ia/video/upload/v1774528081/%E1%84%8A%E1%85%B3%E1%84%83%E1%85%A1_tt38tx.mp3',
-      '핸드폰': 'https://res.cloudinary.com/de76i94ia/video/upload/v1788766979/%E1%84%92%E1%85%A2%E1%86%AB%E1%84%83%E1%85%B3%E1%84%91%E1%85%A9%E1%86%AB_afnvqm.mp3',
+      '핸드폰': '',
       '컴퓨터': 'https://res.cloudinary.com/de76i94ia/video/upload/v1786300967/%E1%84%8F%E1%85%A5%E1%86%B7%E1%84%91%E1%85%B2%E1%84%90%E1%85%A5_eyj7ls.mp3',
   };
   </script>
@@ -632,7 +632,7 @@ function goToPage(n) {
 }
 
 function nextPage() {
-  if (currentPage < 19) goToPage(currentPage + 1);
+  if (currentPage < 26) goToPage(currentPage + 1);
 }
 
 function prevPage() {
@@ -673,7 +673,7 @@ function updateBottomBar() {
    ═══════════════════════════════════════ */
 function handlePageEnter(n) {
   // Outro page
-  if (n === 19) {
+  if (n === 26) {
     playSfx('end');
     setTimeout(() => triggerLessonComplete(), 500);
     return;
