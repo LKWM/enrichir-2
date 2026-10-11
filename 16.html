@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <script>
+  // ================================================================
+  // 클로에 프로필 이미지 — 이미지 링크 추가 시 자동 연동 (원형 크롭 적용)
+  // ================================================================
+  const CHLOE_IMG = 'data:image/jpeg;base64,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';
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Enrichir son expression (2) — Chapitre 4 — Mise en pratique</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+  <style>
+    :root { --nav-h: max(12vmin, 10vh); --btn: calc(var(--nav-h) * 0.5); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Nunito', sans-serif; }
+    .page {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 2.5vh 2.5vw; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; overflow: hidden;
+    }
+    .page.active { opacity: 1; pointer-events: auto; }
+    .ko { font-family: 'Noto Sans KR', sans-serif; }
+    .invisible { visibility: hidden; }
+    .nav-btn {
+      width: var(--btn); height: var(--btn);
+      border-radius: 50%; border: none; background: #7c3aed; color: #fff;
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      font-size: calc(var(--btn) * 0.4167); transition: opacity 0.15s;
+    }
+    .nav-btn:disabled { background: #e9d5ff; cursor: not-allowed; opacity: 0.5; }
+    .cta-btn {
+      background: linear-gradient(135deg,#7c3aed,#4c1d95); color: #fff; border: none; border-radius: 1.2vw;
+      padding: 1.8vh 8vw; font-family: 'Nunito',sans-serif;
+      font-size: clamp(0.9rem, max(2.5vw,2.5vh), 99rem); font-weight: 800; letter-spacing: 0.06em; cursor: pointer;
+      box-shadow: 0 0.5vh 1.8vh rgba(124,58,237,0.2); transition: transform 0.15s;
+    }
+    .cta-btn:hover { transform: scale(1.04); }
+    .cta-btn:active { transform: scale(0.97); }
+    .objectif-card {
+      background: #fff; border: 0.15vh solid #e9d5ff; border-radius: 1.2vw;
+      padding: 1.2vh 3vw; width: 100%; display: flex; align-items: center; gap: 2vw;
+      box-shadow: 0 0.4vh 1.5vh rgba(124,58,237,0.08);
+    }
+    .objectif-cols { display: flex; flex-direction: column; gap: 0.8vh; flex: 1; min-width: 0; }
+    .objectif-ko, .objectif-fr {
+      border-radius: 0.8vw; padding: 0.9vh 2vw; text-align: left; line-height: 1.35;
+      font-size: clamp(0.85rem, max(2.1vw,2.1vh), 1.2rem);
+    }
+    .objectif-ko { background: #f5f3ff; border: 0.15vh solid #e9d5ff; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; color: #1e1b2e; }
+    .objectif-fr { background: #fff; border: 0.15vh solid #ede9fe; font-weight: 500; color: #6b7280; }
+    @keyframes goalGlow {
+      0%   { box-shadow: 0 0 0 0 rgba(124,58,237,0.0); background: #f5f3ff; }
+      25%  { box-shadow: 0 0 0 1.2vh rgba(124,58,237,0.35); background: #ddd6fe; }
+      50%  { box-shadow: 0 0 0 0.3vh rgba(124,58,237,0.15); background: #ede9fe; }
+      75%  { box-shadow: 0 0 0 1.2vh rgba(124,58,237,0.35); background: #ddd6fe; }
+      100% { box-shadow: 0 0 0 0 rgba(124,58,237,0.0); background: #f5f3ff; }
+    }
+    .goal-glow { animation: goalGlow 2s ease-in-out 1; }
+    /* 낮은 가로 화면: 한국어 칸과 번역 칸을 좌우로 나란히 배치하고 높이 기준으로 축소 (칸은 그대로 별도) */
+    @media (orientation: landscape) and (max-height: 520px) {
+      .objectif-cols { flex-direction: row; gap: 1.2vw; align-items: stretch; }
+      .objectif-ko, .objectif-fr { flex: 1; display: flex; align-items: center; font-size: clamp(0.6rem, 3.4vh, 1.1rem); padding: 0.6vh 1.2vw; }
+      .objectif-ex { font-size: clamp(0.55rem, 2.4vh, 0.85rem); padding: 0.4vh 1vw; }
+      .objectif-card { padding: 0.8vh 2vw; }
+      .objectif-badge { min-width: 6vh; height: 6vh; font-size: 3.2vh; }
+      .objectif-badge.done { font-size: 4vh; }
+    }
+    .objectif-ex {
+      background: #fff; border: 0.15vh solid #fde8e8; border-radius: 0.8vw;
+      padding: 0.8vh 2vw; text-align: left; line-height: 1.4; color: #6b7280;
+      font-size: clamp(0.75rem, max(1.9vw,1.9vh), 1.05rem); font-weight: 500;
+    }
+    .res-card {
+      background:#fff; border:0.15vh solid #e9d5ff; border-radius:1.2vw;
+      padding:1.2vh 2.5vw; width:100%; display:flex; flex-direction:column; gap:0.6vh;
+      box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08); flex-shrink:0;
+    }
+    .res-head { display:flex; align-items:center; gap:2vw; }
+    .res-emoji { font-size:clamp(1rem,max(3vw,3vh),99rem); flex-shrink:0; }
+    .res-ko { flex:1; font-family:'Noto Sans KR',sans-serif; font-weight:700; color:#1e1b2e; text-align:left; line-height:1.35; font-size:clamp(0.8rem,max(2vw,2vh),1.15rem); }
+    .res-fr { flex:1; font-weight:500; color:#6b7280; text-align:left; line-height:1.35; font-size:clamp(0.75rem,max(1.9vw,1.9vh),1.05rem); }
+    @media (orientation: landscape) and (max-height: 520px) {
+      #page-3 > div { gap: 1.2vh; }
+      #resultat-title { font-size: clamp(0.8rem, 2.6vh, 1.2rem) !important; }
+      #resultat-list { gap: 0.8vh; }
+      .res-card { padding: 0.7vh 1.5vw; gap: 0.3vh; }
+      .res-emoji { font-size: 2.8vh; }
+      .res-ko { font-size: clamp(0.6rem, 2.7vh, 0.95rem); }
+      .res-fr { font-size: clamp(0.55rem, 2.5vh, 0.85rem); }
+      #resultat-list + div { padding: 1vh 2.5vw; }
+      #resultat-text { font-size: clamp(0.75rem, 2vh, 1rem) !important; }
+    }
+    #objectif-dropdown { display: none; flex-direction: column; gap: 1vh; }
+    #objectif-dropdown.open { display: flex; }
+    .objectif-badge.done { background: transparent; font-size: clamp(1rem, max(3vw,3vh), 99rem); }
+    .objectif-badge {
+      min-width: clamp(1.4rem, max(4vw,4vh), 99rem); height: clamp(1.4rem, max(4vw,4vh), 99rem);
+      border-radius: 50%; background: #ede9fe; color: #7c3aed; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      font-size: clamp(0.75rem, max(2vw,2vh), 99rem);
+    }
+    .chat-row { display: flex; align-items: flex-end; gap: 1.5vw; width: 100%; }
+    .chat-row.user { flex-direction: row-reverse; }
+    .avatar {
+      width: clamp(1.9rem, max(6vw,6vh), 99rem); height: clamp(1.9rem, max(6vw,6vh), 99rem);
+      border-radius: 50%; flex-shrink: 0; overflow: hidden;
+      background: #e5e7eb; display: flex; align-items: center; justify-content: center;
+      border: 0.2vh solid #d1d5db;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .avatar .emoji { font-size: clamp(0.95rem, max(3vw,3vh), 99rem); }
+    .bubble {
+      background: #fff; border: 0.15vh solid #e9d5ff; border-radius: 1.2vw;
+      padding: 1.4vh 2.5vw; max-width: 74%;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: clamp(0.95rem, max(2.4vw,2.4vh), 1.35rem); font-weight: 500; color: #1e1b2e;
+      line-height: 1.55; word-break: break-word; text-align: left;
+      box-shadow: 0 0.4vh 1.5vh rgba(124,58,237,0.06);
+    }
+    .bubble.mine { background: #ede9fe; border-color: #c4b5fd; }
+    @keyframes micpulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.12)} }
+    .mic-live { animation: micpulse 1.2s infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spin { animation: spin 1s linear infinite; }
+  </style>
+</head>
+<body class="bg-violet-50">
+
+  <!-- ════════ PAGE 0 — COVER ════════ -->
+  <div class="page active flex-col bg-violet-50" id="page-0">
+    <div style="width:95%;max-width:90vw;display:flex;flex-direction:column;gap:1.5vh;">
+      <div class="flex flex-col items-center" style="gap:3vh;">
+        <div style="width:clamp(3.5rem,max(12vw,12vh),99rem);height:clamp(3.5rem,max(12vw,12vh),99rem);border-radius:50%;background:linear-gradient(135deg,#7c3aed,#a78bfa);display:flex;align-items:center;justify-content:center;box-shadow:0 0.5vh 2vh rgba(124,58,237,0.25);flex-shrink:0;">
+          <i class="ph ph-chats-circle" style="font-size:clamp(1.75rem,max(6vw,6vh),99rem);color:#fff;"></i>
+        </div>
+        <p style="font-size:clamp(1.05rem,max(2.6vw,2.6vh),99rem);font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#a78bfa;text-align:center;line-height:1.5;margin-bottom:1.5vh;"><span style="white-space:nowrap;">Chapitre 4 :</span> <span style="display:inline-block;">Le temps et la durée</span></p>
+        <p style="font-size:clamp(0.8rem,max(1.8vw,1.8vh),99rem);font-weight:800;letter-spacing:0.18em;color:#a78bfa;text-align:center;">Mise en pratique 🗣️ Conversation libre</p>
+        <h1 style="font-size:clamp(1.5rem,max(5vw,5vh),99rem);font-weight:900;color:#4c1d95;text-align:center;line-height:1.15;margin-top:-1.5vh;">Ma journée quotidienne</h1>
+        <button onclick="startLesson()" style="margin-top:1vh;background:linear-gradient(135deg,#7c3aed,#4c1d95);color:#fff;border:none;border-radius:1.2vw;padding:1.8vh 8vw;font-family:'Nunito',sans-serif;font-size:clamp(0.9rem,max(2.5vw,2.5vh),99rem);font-weight:800;letter-spacing:0.06em;cursor:pointer;box-shadow:0 0.5vh 1.8vh rgba(124,58,237,0.2);transition:transform 0.15s;">Commencer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ PAGE 1 — GOALS ════════ -->
+  <div class="page flex-col bg-violet-50" id="page-1">
+    <div style="width:95%;max-width:90vw;display:flex;flex-direction:column;gap:2vh;">
+      <p style="font-size:clamp(0.9rem,max(2.3vw,2.3vh),1.3rem);font-weight:500;line-height:1.7;text-align:center;color:#1e1b2e;">Discutez en coréen avec Chloé et atteignez tous les objectifs ci-dessous. Vous devez atteindre tous les objectifs en 12 tours maximum.</p>
+      <div style="display:flex;flex-direction:column;gap:2vh;width:100%;">
+        <div class="objectif-card">
+          <span class="objectif-badge" id="goal-badge-1">1</span>
+          <div class="objectif-cols">
+            <p class="objectif-ko">몇 시부터 몇 시까지 자는지 말하기</p>
+            <p class="objectif-fr">Dire de quelle heure à quelle heure je dors</p>
+          </div>
+        </div>
+        <div class="objectif-card">
+          <span class="objectif-badge" id="goal-badge-2">2</span>
+          <div class="objectif-cols">
+            <p class="objectif-ko">클로에에게 몇 시간 동안 자는지 묻기</p>
+            <p class="objectif-fr">Demander à Chloé combien d’heures elle dort</p>
+          </div>
+        </div>
+        <div class="objectif-card">
+          <span class="objectif-badge" id="goal-badge-3">3</span>
+          <div class="objectif-cols">
+            <p class="objectif-ko">다른 활동 한 가지에 대해 말하기</p>
+            <p class="objectif-fr">Parler d’une autre activité</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:center;">
+        <button class="cta-btn" onclick="startConversation()">Commencer la conversation</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ PAGE 2 — CONVERSATION ════════ -->
+  <div class="page flex-col bg-violet-50" id="page-2" style="justify-content:flex-start;padding-top:3vh;">
+    <div style="width:95%;max-width:90vw;display:flex;flex-direction:column;flex:1;min-height:0;">
+      <!-- 목표 배너 (순서대로 하나씩) -->
+      <div id="objectif-wrap" style="width:100%;flex-shrink:0;position:relative;">
+        <div id="objectif-banner" onclick="toggleObjectifDropdown()" style="cursor:pointer;background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:1.1vh 3vw;width:100%;display:flex;align-items:center;gap:2vw;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);">
+          <span class="objectif-badge" id="objectif-badge">1</span>
+          <div class="objectif-cols">
+            <p class="objectif-ko" id="objectif-ko"></p>
+            <p class="objectif-fr" id="objectif-fr"></p>
+          </div>
+          <i class="ph ph-caret-down" id="objectif-caret" style="font-size:clamp(1rem,max(2.8vw,2.8vh),99rem);color:#7c3aed;flex-shrink:0;transition:transform 0.2s;"></i>
+        </div>
+        <div id="objectif-dropdown" style="position:absolute;top:100%;left:0;width:100%;z-index:120;margin-top:0.8vh;background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:1.2vh 2vw;box-shadow:0 1vh 3vh rgba(124,58,237,0.18);"></div>
+      </div>
+      <!-- 남은 턴 수 (오른쪽 정렬) -->
+      <p id="turns-remaining" style="font-size:clamp(0.75rem,max(1.9vw,1.9vh),1.05rem);font-weight:700;color:#7c3aed;text-align:right;width:100%;padding:1vh 1vw 0.5vh 1vw;flex-shrink:0;">Nombre de tours restants : 10</p>
+      <!-- 대화 창 -->
+      <div id="chat-area" style="flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:1.2vh;padding:1vh 0.5vw;width:100%;">
+        <p id="mic-hint" style="font-size:clamp(0.8rem,max(2vw,2vh),1.1rem);font-weight:600;color:#7c3aed;text-align:center;display:none;padding:1vh 2vw;background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1vw;">Dites « 여보세요 » pour tester le microphone.</p>
+      <p id="live-status" style="font-size:clamp(0.8rem,max(2vw,2vh),1.1rem);font-weight:600;color:#6b7280;text-align:center;display:none;"></p>
+      <p id="turns-exhausted-msg" style="font-size:clamp(0.8rem,max(2vw,2vh),1.1rem);font-weight:600;color:#6b7280;text-align:center;display:none;padding:1vh 2vw;">Vous avez utilisé toutes les interactions disponibles pour cette conversation.</p>
+      <p id="bye-msg" style="font-size:clamp(0.8rem,max(2vw,2vh),1.1rem);font-weight:600;color:#6b7280;text-align:center;display:none;padding:1vh 2vw;">Dites « 안녕히 가세요 » pour terminer la conversation.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ 대화 하단 존 (공간 항상 확보 — 종료 시 Continuer / 시작 실패 시 Réessayer) ════════ -->
+  <div id="conv-bottom" style="position:fixed;bottom:0;left:0;width:100%;height:var(--nav-h);display:none;align-items:center;justify-content:center;padding:0 2.5vw;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-top:0.15vh solid #e9d5ff;z-index:150;">
+    <!-- 대화 중: 마이크 상태 인디케이터 (원본 하단바) -->
+    <div id="conv-mic" style="display:none;align-items:center;justify-content:center;gap:1.5vw;color:#7c3aed;">
+      <i class="ph-fill ph-microphone mic-live" style="font-size:calc(var(--btn) * 0.6);"></i>
+    </div>
+    <button id="conv-retry" class="cta-btn" style="display:none;padding:1.2vh 6vw;font-size:clamp(0.85rem,max(2.2vw,2.2vh),99rem);" onclick="startConversation()">Réessayer</button>
+    <button id="conv-continue" class="cta-btn" style="display:none;padding:1.2vh 6vw;font-size:clamp(0.85rem,max(2.2vw,2.2vh),99rem);" onclick="continueToOutro()">Terminer</button>
+  </div>
+
+  <!-- ════════ PAGE 3 — RÉSULTAT (노션 [Résultat]) ════════ -->
+  <div class="page flex-col bg-violet-50" id="page-3">
+    <div style="width:95%;max-width:90vw;display:flex;flex-direction:column;gap:2vh;">
+      <p id="resultat-title" class="ko" style="font-size:clamp(1.05rem,max(2.8vw,2.8vh),1.5rem);font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#7c3aed;text-align:center;">Résultat</p>
+      <div id="resultat-list" style="display:flex;flex-direction:column;gap:1.2vh;width:100%;"></div>
+      <div style="background:rgba(255,255,255,0.7);border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:1.8vh 3vw;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.1);flex-shrink:0;">
+        <p id="resultat-text" style="font-size:clamp(0.85rem,max(2.2vw,2.2vh),1.2rem);font-weight:500;line-height:1.6;text-align:center;color:#1e1b2e;"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+let currentPage = 0;
+const TOTAL_PAGES = 4;
+let toneReady = false;
+let ringSynth = null, hangupSynth = null;
+let correctSound, errorSound, completionSynth, transitionSynth, startSynth;
+
+// ================================================================
+// Permit (부모 postMessage 수신 — 3강 확정 방식과 동일)
+// ================================================================
+const LIVE_URL = 'https://coreeno.base44.app/functions/GeminiLive';
+let lessonPermit = null;
+let lessonId = null;
+window.addEventListener('message', (event) => {
+  if (event.data?.type !== "coreeno:permit") return;
+  lessonPermit = event.data.permit;
+  lessonId = event.data.lesson_id;
+});
+
+let geminiErrorStreak = 0;
+function geminiErrorMessage(error) {
+  const msg = (error && error.message) || String(error);
+  if (msg.indexOf('Lesson permit') !== -1) {
+    return "Permis d'accès indisponible. Veuillez actualiser la page et réessayer.";
+  }
+  const m = msg.match(/API status: (\d+)/);
+  if (m) {
+    const status = parseInt(m[1], 10);
+    if (status === 401 || status === 403) return "Permis d'accès expiré. Veuillez actualiser la page et réessayer.";
+    if (status === 404) return "La configuration vocale de cette leçon est indisponible. Veuillez contacter l'administrateur.";
+    if (status === 429) return "Limite d'utilisation atteinte. Veuillez réessayer dans quelques instants. Si l'erreur persiste, signalez un bug.";
+    if (status >= 500) return "Erreur du serveur. Veuillez réessayer dans quelques instants. Si l'erreur persiste, signalez un bug.";
+    return "Erreur inattendue. Si le problème persiste, signalez un bug.";
+  }
+  geminiErrorStreak++;
+  if (geminiErrorStreak >= 2) return "Erreur de connexion. Si le problème persiste, signalez un bug.";
+  return "Erreur de connexion. Veuillez réessayer.";
+}
+
+// ================================================================
+// 목표 정의 (실라버스 verbatim)
+// ================================================================
+const OBJECTIFS = [
+  { n: 1, ko: '몇 시부터 몇 시까지 자는지 말하기', fr: 'Dire de quelle heure à quelle heure je dors' },
+  { n: 2, ko: '클로에에게 몇 시간 동안 자는지 묻기', fr: 'Demander à Chloé combien d’heures elle dort' },
+  { n: 3, ko: '다른 활동 한 가지에 대해 말하기', fr: 'Parler d’une autre activité' },
+];
+const MAX_TURNS = 12;
+
+// ================================================================
+// 라이브 세션 상태
+// ================================================================
+let liveSession = null;   // { ws, model, voiceName }
+let micStream = null, micCtx = null, micWorklet = null;
+let micGated = false;   // true = 에이전트 발화 중 (논리적 차단 플래그)
+let micWanted = false;  // 마이크 의도 상태 (true = 켬, false = 완전 차단)
+let turnInProg = false;  // 에이전트 턴 진행 중 (turnComplete 전까지 — 마지막 발화 포함)
+let outCtx = null;         // 24kHz 재생용
+
+let conversationEnded = false;
+let conversationStarted = false;
+let objectifIndex = 0;     // 현재 목표 (0-3)
+let turnsUsed = 0;
+let endedByTurns = false;   // 턴수 소진으로 종료됐는지 (종료 안내 메시지 표시용)
+let userSpokeInTurn = false;
+let userBubbleEl = null, userTurnText = '';
+let agentBubbleEl = null, agentTurnText = '';
+let agentGotTranscript = false;  // outputTranscription 도착 여부 (modelTurn.text 폴백 판별)
+let resumptionHandle = null;
+let reconnecting = false;
+let liveFailed = false;
+let hadConversation = false;   // 에이전트 발화 또는 학생 발화가 한 번이라도 있었는지
+
+// ================================================================
+// 효과음 (기존 레슨과 동일)
+// ================================================================
+async function initTone() {
+  await Tone.start();
+  correctSound = new Tone.Synth({ oscillator: { type: "sine" } }).toDestination();
+  errorSound = new Tone.Synth({ oscillator: { type: "triangle" } }).toDestination();
+  completionSynth = new Tone.PolySynth(Tone.Synth).toDestination();
+  transitionSynth = new Tone.Synth({ oscillator: { type: "sine" }, envelope: { attack: 0.01, decay: 0.1, sustain: 0, release: 0.1 } }).toDestination();
+  transitionSynth.volume.value = -15;
+  startSynth = new Tone.Synth({ oscillator: { type: "sine" }, envelope: { attack: 0.01, decay: 0.2, sustain: 0, release: 0.15 } }).toDestination();
+  ringSynth = new Tone.PolySynth(Tone.Synth, { oscillator: { type: "sine" }, envelope: { attack: 0.01, decay: 0.25, sustain: 0, release: 0.1 } }).toDestination();
+  ringSynth.volume.value = -14;
+  hangupSynth = new Tone.PolySynth(Tone.Synth, { oscillator: { type: "sine" }, envelope: { attack: 0.005, decay: 0.12, sustain: 0, release: 0.05 } }).toDestination();
+  hangupSynth.volume.value = -12;
+  toneReady = true;
+}
+
+function playSfx(type) {
+  if (!toneReady) return;
+  try {
+    switch(type) {
+      case 'pageTurn':
+        transitionSynth.triggerAttackRelease('C6', '0.05s');
+        break;
+      case 'correct':
+        correctSound.triggerAttackRelease('C5', '0.2s');
+        break;
+      case 'start':
+        startSynth.triggerAttackRelease("E4", "16n", Tone.now());
+        startSynth.triggerAttackRelease("A4", "16n", Tone.now() + 0.12);
+        startSynth.triggerAttackRelease("C#5", "8n", Tone.now() + 0.24);
+        break;
+      case 'end':
+        completionSynth.triggerAttackRelease(["C5","E5","G5","C6"], "4n");
+        break;
+      case 'dial':   // 전화 걸리는 소리 (440+480Hz 이중 링)
+        ringSynth.triggerAttackRelease(["A4","B4"], "0.4s", Tone.now());
+        ringSynth.triggerAttackRelease(["A4","B4"], "0.4s", Tone.now() + 0.6);
+        break;
+      case 'hangup': // 전화 끊기는 소리 (480+620Hz 3회 비지톤)
+        hangupSynth.triggerAttackRelease(["B4","Eb5"], "0.15s", Tone.now());
+        hangupSynth.triggerAttackRelease(["B4","Eb5"], "0.15s", Tone.now() + 0.3);
+        hangupSynth.triggerAttackRelease(["B4","Eb5"], "0.15s", Tone.now() + 0.6);
+        break;
+    }
+  } catch (e) { console.warn('sfx error:', e.message); }
+}
+
+// ================================================================
+// 페이지 전환 (기존 레슨과 동일 방식)
+// ================================================================
+async function startLesson() {
+  await initTone();
+  playSfx('start');
+  goToPage(1);
+}
+
+function goToPage(n) {
+  if (n === currentPage) return;
+  playSfx('pageTurn');
+
+  // 대화 페이지를 벗어나는 경우 라이브 리소스 정리
+  if (currentPage === 2 && n !== 2) teardownLive();
+
+  const oldPage = document.getElementById('page-' + currentPage);
+  if (oldPage) oldPage.classList.remove('active');
+  currentPage = n;
+  const newPage = document.getElementById('page-' + n);
+  if (newPage) newPage.classList.add('active');
+
+  updateBottomBar();
+  handlePageEnter(n);
+}
+
+
+
+
+function updateBottomBar() {
+  const convBar = document.getElementById('conv-bottom');
+  const activePage = document.getElementById('page-' + currentPage);
+  if (currentPage === 2) {
+    // 대화 페이지: 하단 공간을 항상 확보 (종료 시 Continuer가 나타나도 레이아웃이 움직이지 않음)
+    convBar.style.display = 'flex';
+    if (activePage) activePage.style.paddingBottom = 'calc(var(--nav-h) + 2.5vh)';
+    updateConvBottom();
+    return;
+  }
+  convBar.style.display = 'none';
+  if (activePage) activePage.style.paddingBottom = '';
+}
+
+function handlePageEnter(n) {
+  if (n === 3) {
+    renderResultat();
+    playSfx('end');
+    setTimeout(() => triggerLessonComplete(), 500);
+  }
+}
+
+// [Résultat] 각 objectif 통과 여부를 이모지로 공개, 오답이 있는 경우 틀린 objectif에만 예시 공개
+function renderResultat() {
+  const list = document.getElementById('resultat-list');
+  list.innerHTML = '';
+  let allPassed = true;
+  OBJECTIFS.forEach((o, i) => {
+    const passed = passedGoals[i];
+    if (!passed) allPassed = false;
+    const card = document.createElement('div');
+    card.className = 'res-card';
+    const head = document.createElement('div');
+    head.className = 'res-head';
+    const emoji = document.createElement('span');
+    emoji.className = 'res-emoji';
+    emoji.textContent = passed ? '✅' : '❌';
+    const ko = document.createElement('p');
+    ko.className = 'res-ko'; ko.textContent = o.ko;
+    const fr = document.createElement('p');
+    fr.className = 'res-fr'; fr.textContent = o.fr;
+    head.appendChild(emoji); head.appendChild(ko); head.appendChild(fr);
+    card.appendChild(head);
+    if (!passed && o.exko) {
+      const ex = document.createElement('p');
+      ex.className = 'objectif-ex';
+      ex.textContent = '\u201c' + o.exko + '\u201d (' + o.exfr + ')';
+      card.appendChild(ex);
+    }
+    list.appendChild(card);
+  });
+  document.getElementById('resultat-text').textContent = 'Vous avez réussi à discuter en coréen en utilisant les phrases apprises dans ce chapitre. Excellent travail ! Rendez-vous au prochain chapitre !';
+}
+
+function triggerLessonComplete() {
+  window.parent.postMessage({ type: 'lesson_complete' }, '*');
+}
+
+// ================================================================
+// 대화 UI
+// ================================================================
+function showLiveStatus(text) {
+  const el = document.getElementById('live-status');
+  if (text) { el.textContent = text; el.style.display = 'block'; }
+  else { el.style.display = 'none'; }
+}
+
+function scrollChat() {
+  const el = document.getElementById('chat-area');
+  el.scrollTop = el.scrollHeight;
+}
+
+function appendAgentBubble() {
+  hideByeMsg();
+  const area = document.getElementById('chat-area');
+  const row = document.createElement('div');
+  row.className = 'chat-row';
+  const av = document.createElement('div');
+  av.className = 'avatar';
+  if (CHLOE_IMG) {
+    const img = document.createElement('img');
+    img.src = CHLOE_IMG; img.alt = 'Chloé';
+    av.appendChild(img);
+  } else {
+    const i = document.createElement('i');
+    i.className = 'ph ph-user';
+    i.style.fontSize = 'clamp(0.95rem, max(3vw,3vh), 99rem)';
+    i.style.color = '#9ca3af';
+    av.appendChild(i);
+  }
+  const b = document.createElement('div');
+  b.className = 'bubble ko';
+  row.appendChild(av); row.appendChild(b);
+  area.appendChild(row);
+  agentBubbleEl = b;
+  scrollChat();
+}
+
+function appendUserBubble() {
+  hideByeMsg();
+  const area = document.getElementById('chat-area');
+  const row = document.createElement('div');
+  row.className = 'chat-row user';
+  const av = document.createElement('div');
+  av.className = 'avatar';
+  const sp = document.createElement('span');
+  sp.className = 'emoji';
+  sp.textContent = '👤';
+  av.appendChild(sp);
+  const b = document.createElement('div');
+  b.className = 'bubble mine ko';
+  row.appendChild(av); row.appendChild(b);
+  area.appendChild(row);
+  userBubbleEl = b;
+  scrollChat();
+}
+
+let passedGoals = [false, false, false];
+
+function updateObjectifBanner() {
+  // 배너에는 아직 통과하지 못한 가장 앞 목표를 표시 (모두 통과 시 마지막 목표 유지)
+  let idx = passedGoals.findIndex(p => !p);
+  if (idx === -1) idx = OBJECTIFS.length - 1;
+  objectifIndex = idx;
+  const o = OBJECTIFS[idx];
+  const badge = document.getElementById('objectif-badge');
+  if (passedGoals[idx]) { badge.textContent = '✅'; badge.classList.add('done'); }
+  else { badge.textContent = o.n; badge.classList.remove('done'); }
+  document.getElementById('objectif-ko').textContent = o.ko;
+  document.getElementById('objectif-fr').textContent = o.fr;
+  renderObjectifDropdown();
+}
+
+function renderObjectifDropdown() {
+  const dd = document.getElementById('objectif-dropdown');
+  dd.innerHTML = '';
+  OBJECTIFS.forEach((o, i) => {
+    const card = document.createElement('div');
+    card.className = 'objectif-card';
+    card.style.boxShadow = 'none';
+    const badge = document.createElement('span');
+    badge.className = 'objectif-badge' + (passedGoals[i] ? ' done' : '');
+    badge.textContent = passedGoals[i] ? '✅' : o.n;
+    const cols = document.createElement('div');
+    cols.className = 'objectif-cols';
+    const ko = document.createElement('p'); ko.className = 'objectif-ko'; ko.textContent = o.ko;
+    const fr = document.createElement('p'); fr.className = 'objectif-fr'; fr.textContent = o.fr;
+    cols.appendChild(ko); cols.appendChild(fr);
+    card.appendChild(badge); card.appendChild(cols);
+    dd.appendChild(card);
+  });
+}
+
+function toggleObjectifDropdown(forceClose) {
+  const dd = document.getElementById('objectif-dropdown');
+  const open = forceClose ? false : !dd.classList.contains('open');
+  dd.classList.toggle('open', open);
+  document.getElementById('objectif-caret').style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
+}
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('#objectif-wrap')) toggleObjectifDropdown(true);
+});
+
+// ── 목표/종료 감지: 백엔드 Conversation flow의 특정 문구를 에이전트가 말하면 목표 통과/종료 처리 ──
+// (텍스트 상태 마커는 음성으로 읽히는 문제가 있어 폐기 — 문구는 전사 누적 버퍼에서 감시, 청크 분할 대응)
+const GOAL_PHRASES = [
+  { n: 1, re: /시간이네요/ },                          // Obj 1 통과: 아, 총 X 시간이네요!
+  { n: 2, re: /일곱 시간 동안 자요/ },                 // Obj 2 통과: 저는 보통 일곱 시간 동안 자요.
+  { n: 3, re: /오늘 만나서 반가웠어요/ },              // Obj 3 통과: 오늘 만나서 반가웠어요. 다음에 또 만나요!
+];
+const RE_BYE_PHRASE = /다음에 또 만나|안녕히 가세요/;   // Obj 3 통과·실패 작별 문구 = 종료 감지
+let agentSaidBye = false, byeShown = false, awaitingUserBye = false;   // 작별 인사 이후 유저 발화 1회 = 대화 종료 대기 상태
+
+function processAgentText(chunk) {
+  agentTurnText += chunk;
+  // 목표 문구 감지 → 통과 처리 (문구는 화면에 그대로 표시)
+  for (const g of GOAL_PHRASES) { if (g.re.test(agentTurnText)) goalPassed(g.n); }
+  // 에이전트 작별 인사 감지 → 발화는 끝까지 재생한 뒤 작별 안내 메시지 표시 (즉시 종료하지 않음)
+  if (RE_BYE_PHRASE.test(agentTurnText)) agentSaidBye = true;
+  let display = agentTurnText.replace(/<[^<>]*>/g, '');   // 방어: 꺽쇠 안내문 노출 제거
+  if (agentBubbleEl) { agentBubbleEl.textContent = display.trim(); scrollChat(); }
+}
+
+// 에이전트 작별 인사 후 대화창 하단에 종료 안내 표시 (턴수 부족 메시지와 동일 위치·양식)
+function maybeShowByeMsg() {
+  if (!agentSaidBye || byeShown || conversationEnded || endPending || turnInProg || agentAudioPlaying()) return;
+  byeShown = true;
+  awaitingUserBye = true;   // 이후 유저가 무슨 말을 하든 전사 도착 즉시 종료 (안내 문구는 예시일 뿐)
+  const m = document.getElementById('bye-msg');
+  document.getElementById('chat-area').appendChild(m);
+  m.style.display = 'block';
+  scrollChat();
+}
+
+// 새 말풍선이 오면 작별 안내는 더 이상 마지막 요소가 아니므로 숨김 (감지 자체는 유지)
+function hideByeMsg() {
+  if (!byeShown && document.getElementById('bye-msg').style.display === 'none') return;
+  byeShown = false;
+  document.getElementById('bye-msg').style.display = 'none';
+}
+
+function updateTurnsDisplay() {
+  const left = Math.max(0, MAX_TURNS - turnsUsed);
+  document.getElementById('turns-remaining').textContent = 'Nombre de tours restants : ' + left;
+}
+
+function goalPassed(n) {
+  const idx = n - 1;
+  if (idx < 0 || idx >= OBJECTIFS.length || passedGoals[idx]) return;
+  passedGoals[idx] = true;
+  // 통과한 목표를 배너에서 잠시 ✅로 보여주며 반짝인 뒤, 다음 목표로 전환
+  const badge = document.getElementById('objectif-badge');
+  const banner = document.getElementById('objectif-banner');
+  const shownIdx = objectifIndex;
+  if (shownIdx === idx) { badge.textContent = '✅'; badge.classList.add('done'); }
+  banner.classList.remove('goal-glow'); void banner.offsetWidth; banner.classList.add('goal-glow');
+  renderObjectifDropdown();
+  setTimeout(() => { updateObjectifBanner(); }, 4000);  // 반짝임 2초 + 대기 2초 후 다음 목표
+}
+
+// ================================================================
+// Live 토큰 발급 + WebSocket
+// ================================================================
+async function startConversation() {
+  if (conversationEnded) return;
+  // 재시도: 이전 세션 리소스 정리 후 새로 시작
+  if (liveSession && liveSession.ws) { try { liveSession.ws.close(); } catch (e) {} }
+  liveSession = null;
+  micOff();
+  conversationStarted = false;
+  liveFailed = false;
+  hadConversation = false;
+  endPending = false;
+  micGated = false;
+  agentGotTranscript = false;
+  showLiveStatus(null);
+
+  // 대화 페이지로 전환 (하단 공간 확보된 화면)
+  if (currentPage !== 2) goToPage(2);
+  updateConvBottom();
+
+  try {
+    if (!lessonPermit || !lessonId) throw new Error('Lesson permit is not available yet.');
+    const res = await fetch(LIVE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ permit: lessonPermit, lesson_id: lessonId })
+    });
+    if (!res.ok) throw new Error("API status: " + res.status);
+    const data = await res.json();
+    connectLive(data);
+  } catch (error) {
+    console.warn("GeminiLive Error:", error);
+    liveFailed = true;
+    showLiveStatus(geminiErrorMessage(error));
+    updateConvBottom();
+  }
+}
+
+function makeLiveHandler() {
+  return async (e) => {
+   try {
+    const text = typeof e.data === "string" ? e.data : await e.data.text();
+    let msg;
+    try { msg = JSON.parse(text); } catch (err) { return; }
+
+    if (msg.setupComplete) onLiveReady();
+    if (msg.sessionResumptionUpdate?.newHandle) resumptionHandle = msg.sessionResumptionUpdate.newHandle;
+    if (msg.goAway) onGoAway();
+
+    const sc = msg.serverContent;
+    if (!sc) return;
+
+    if (sc.interrupted) { stopAgentAudio(); micGated = false; turnInProg = false; if (!endPending && !conversationEnded) updateMicUI(true); if (endPending) checkEndAfterTurn(); }
+    if (sc.modelTurn || sc.outputTranscription || sc.inputTranscription) hadConversation = true;
+    // 에이전트 턴 시작 → 마이크 차단 (주고받기 한 턴씩)
+    if (sc.modelTurn || sc.outputTranscription) { micGated = true; turnInProg = true; updateMicUI(false); }   // 에이전트 턴 시작 → 전송 차단(마이크 스트림은 유지)
+
+    const parts = sc.modelTurn?.parts || [];
+    for (const p of parts) {
+      if (p.inlineData?.data) enqueueAgentPcm(p.inlineData.data);   // AI 음성 (24kHz)
+      if (p.text) agentFallbackText += p.text;                       // 자막 폴백
+    }
+    if (sc.inputTranscription?.text) {
+      onUserTranscript(sc.inputTranscription.text);
+    }
+    if (sc.outputTranscription?.text) {
+      agentGotTranscript = true;
+      if (!agentBubbleEl) appendAgentBubble();
+      processAgentText(sc.outputTranscription.text);
+    }
+    if (sc.turnComplete) onTurnComplete();
+   } catch (err) { console.warn('live handler error:', err.message); }
+  };
+}
+
+function connectLive(data) {
+  const ws = new WebSocket(`${data.websocket_url}?access_token=${data.token}`);
+  liveSession = { ws, model: data.model, voiceName: data.voice_name };
+
+  ws.onopen = () => {
+    // setup에는 model만 전송 (서버 잠금 설정 외 전송 금지)
+    ws.send(JSON.stringify({ setup: { model: `models/${data.model}` } }));
+  };
+
+  ws.onmessage = makeLiveHandler();
+
+  ws.onerror = () => { /* onclose에서 일괄 처리 */ };
+  ws.onclose = () => onSocketClosed();
+}
+
+// 소켓이 닫힌 경우: 대화가 이미 진행됐다면(에이전트가 발화했거나 학생이 말한 뒤) 정상 종료로 간주하고
+// 마지막 발화 재생 후 Continuer를 띄운다. 대화가 시작되기도 전에 끊긴 경우만 연결 오류로 처리.
+function onSocketClosed() {
+  if (conversationEnded || reconnecting) return;
+  // 종료 대기 중 소켓이 닫히면: 서버가 더 보낼 수 없으므로 남은 오디오 재생까지만 기다린다
+  if (endPending) { turnInProg = false; checkEndAfterTurn(); return; }
+  if (conversationStarted && hadConversation) { endConversation(); return; }
+  if (conversationStarted) {
+    micOff();
+    liveFailed = true;
+    showLiveStatus(geminiErrorMessage(new Error('Erreur de connexion.')));
+    updateConvBottom();
+  }
+}
+
+function onLiveReady() {
+  if (conversationStarted) return;
+  conversationStarted = true;
+  liveFailed = false;
+  // 시작 알림 전송 — 에이전트가 먼저 발화할 수 있도록
+  liveSession.ws.send(JSON.stringify({ clientContent: { turns: [{ role: "user", parts: [{ text: "시작" }] }] } }));
+  // 연결됨: 전화 걸리는 소리 + 마이크 테스트 안내 → 유저가 먼저 말하며 대화 시작
+  playSfx('dial');
+  document.getElementById('mic-hint').style.display = 'block';
+  micOn();
+  updateConvBottom();
+}
+
+// ================================================================
+// goAway — 세션 연장 (handle 저장 → 새 토큰 → 재접속)
+// ================================================================
+async function onGoAway() {
+  if (conversationEnded || reconnecting) return;
+  reconnecting = true;
+  micOff();
+  const handle = resumptionHandle;
+  resumptionHandle = null;
+  // 기존 ws의 핸들러 무력화 (종료 이벤트가 오류로 표시되지 않도록)
+  if (liveSession && liveSession.ws) {
+    liveSession.ws.onclose = null;
+    liveSession.ws.onerror = null;
+  }
+  try {
+    const res = await fetch(LIVE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ permit: lessonPermit, lesson_id: lessonId })
+    });
+    if (!res.ok) throw new Error("API status: " + res.status);
+    const data = await res.json();
+    const ws = new WebSocket(`${data.websocket_url}?access_token=${data.token}`);
+    liveSession = { ws, model: data.model, voiceName: data.voice_name };
+    ws.onopen = () => {
+      const setup = { model: `models/${data.model}` };
+      if (handle) setup.sessionResumption = { handle };   // 거부되면 서버가 새 세션으로 시작
+      ws.send(JSON.stringify({ setup }));
+    };
+    ws.onmessage = makeLiveHandler();
+    ws.onerror = () => {};
+    ws.onclose = () => onSocketClosed();
+    reconnecting = false;
+    if (!micGated && !endPending && !conversationEnded) { updateMicUI(true); micOn(); }   // 재접속 후 마이크 수신 재개 (스트림 끊겼으면 재취득)
+  } catch (e) {
+    reconnecting = false;
+    liveFailed = true;
+    showLiveStatus(geminiErrorMessage(e));
+    updateConvBottom();
+  }
+}
+
+// ================================================================
+// 마이크 (16kHz PCM16, AudioWorklet, 100ms 청크)
+// ================================================================
+const WORKLET_CODE = `
+class PCMProcessor extends AudioWorkletProcessor {
+  constructor() { super(); this._buf = []; }
+  process(inputs) {
+    const ch = inputs[0][0];
+    if (ch) {
+      for (let i = 0; i < ch.length; i++) this._buf.push(ch[i]);
+      while (this._buf.length >= 1600) {
+        const seg = this._buf.splice(0, 1600);
+        const pcm = new Int16Array(1600);
+        for (let i = 0; i < 1600; i++) {
+          let s = Math.max(-1, Math.min(1, seg[i]));
+          pcm[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+        }
+        this.port.postMessage(pcm.buffer);
+      }
+    }
+    return true;
+  }
+}
+registerProcessor('pcm-processor', PCMProcessor);
+`;
+
+// 마이크 의도 상태 전환: micOn = 실제 마이크 켬, micOff = 트랙까지 완전 중단 (디바이스에 마이크 해제로 보임)
+async function micOn() {
+  micWanted = true;
+  if (conversationEnded || endPending) return;
+  if (micStream) return;   // 이미 켜져 있음
+  await startMic();
+}
+
+function micOff() {
+  micWanted = false;
+  stopMic();
+}
+
+async function startMic() {
+  if (micStream) return;
+  // 모바일에서 트랙 stop 직후 getUserMedia가 일시 실패하는 경우가 있어 최대 3회 재시도
+  let stream = null, micError = null;
+  for (let attempt = 0; attempt < 3 && !stream; attempt++) {
+    try { stream = await navigator.mediaDevices.getUserMedia({ audio: true }); }
+    catch (e) {
+      micError = e;
+      if (e && e.name === 'NotAllowedError') break;   // 권한 거부는 재시도해도 소용 없음
+      if (attempt < 2) await new Promise(r => setTimeout(r, 350));
+    }
+  }
+  if (!micWanted) { if (stream) stream.getTracks().forEach(t => t.stop()); return; }   // 대기 중 꺼짐 → 즉시 반납
+  if (!stream) { throw (micError || new Error('getUserMedia failed')); }
+  micStream = stream;
+  // 컨텍스트와 워클릿 모듈은 재사용 — 매 턴 close/재생성하면 모바일 오디오 세션이 전환되어
+  // 재생 컨텍스트가 정지(suspended)되고 발화 드레인 감지가 영구 멈춤 (에이전트 음성 안 들림 + 마이크 미복귀)
+  if (!micCtx || micCtx.state === 'closed') { micCtx = new AudioContext({ sampleRate: 16000 }); micCtx.__moduleLoaded = false; }
+  if (micCtx.state === 'suspended') { try { await micCtx.resume(); } catch (e) {} }
+  try {
+    if (!micCtx.__moduleLoaded) {
+      const blob = new Blob([WORKLET_CODE], { type: 'application/javascript' });
+      const url = URL.createObjectURL(blob);
+      await micCtx.audioWorklet.addModule(url);
+      micCtx.__moduleLoaded = true;
+    }
+    if (!micWanted) { stopMic(); return; }
+    const src = micCtx.createMediaStreamSource(micStream);
+    micWorklet = new AudioWorkletNode(micCtx, 'pcm-processor');
+    micWorklet.port.onmessage = (e) => {
+      if (micGated || !micWanted) return;   // 에이전트가 말하는 중에는 오디오를 보내지 않는다 (동시 발화·끊김 방지)
+      if (liveSession && liveSession.ws && liveSession.ws.readyState === WebSocket.OPEN) {
+        const b64 = arrayBufferToBase64(e.data);
+        liveSession.ws.send(JSON.stringify({
+          realtimeInput: { audio: { data: b64, mimeType: "audio/pcm;rate=16000" } }
+        }));
+      }
+    };
+    src.connect(micWorklet);
+    updateMicUI(true);
+  } catch (e) {
+    console.warn('Mic error:', e);
+    stopMic();
+    if (conversationStarted && hadConversation) {
+      showLiveStatus("Micro inaccessible. Réessayez.");   // 대화 중 재시작 실패: 안내만 (대화 유지)
+    } else {
+      liveFailed = true;
+      document.getElementById('mic-hint').style.display = 'none';
+      showLiveStatus("Erreur de connexion. Veuillez réessayer.");
+      updateConvBottom();
+    }
+  }
+}
+
+function stopMic() {
+  if (micWorklet) { try { micWorklet.disconnect(); } catch (e) {} micWorklet = null; }
+  if (micStream) { micStream.getTracks().forEach(t => t.stop()); micStream = null; }   // 트랙 정지 → 디바이스는 마이크 해제 상태
+  if (micCtx) { try { micCtx.suspend(); } catch (e) {} }   // 컨텍스트는 유지(suspend) — close는 대화 종료 시만
+  updateMicUI(false);
+}
+
+// 마이크 사용 여부 표시 — 하단바 마이크 인디케이터 (켜짐=맥동 보라 마이크, 꺼짐=회색 슬래시)
+function updateMicUI(on) {
+  const el = document.getElementById('conv-mic');
+  if (!el) return;
+  el.innerHTML = on
+    ? '<i class="ph-fill ph-microphone mic-live" style="font-size:calc(var(--btn) * 0.6);"></i>'
+    : '<i class="ph ph-microphone-slash" style="font-size:calc(var(--btn) * 0.6);"></i>';
+  el.style.color = on ? '#7c3aed' : '#9ca3af';
+}
+
+function arrayBufferToBase64(buf) {
+  const bytes = new Uint8Array(buf);
+  let bin = '';
+  const CHUNK = 0x8000;
+  for (let i = 0; i < bytes.length; i += CHUNK) {
+    bin += String.fromCharCode.apply(null, bytes.subarray(i, i + CHUNK));
+  }
+  return btoa(bin);
+}
+
+// ================================================================
+// 수신 오디오 재생 (24kHz PCM — 단일 AudioContext에 샘플 정확도로 예약 재생)
+// 청크마다 onended로 다음을 시작하면 청크 사이에 틈이 생겨 지직거린다.
+// nextStartTime에 청크를 연속 예약하여 틈 없이 이어 붙인다.
+// ================================================================
+let nextPlayTime = 0;
+let activeSources = [];
+let masterGain = null;
+const VOLUME_DEFAULT = 0.5;   // 기본 음량 50% (시끄러움 지적) — 이후 크기는 디바이스 볼륨으로 조절
+let lastAgentAudioEnd = 0;
+
+function ensureOutCtx() {
+  if (!outCtx || outCtx.state === 'closed') {
+    outCtx = new AudioContext({ sampleRate: 24000 });
+    outCtx.onstatechange = () => {
+      if (outCtx && outCtx.state === 'suspended' && !conversationEnded && !document.hidden) {
+        outCtx.resume().catch(() => {});
+      }
+    };
+    nextPlayTime = 0;
+    masterGain = outCtx.createGain();
+    masterGain.gain.value = VOLUME_DEFAULT;
+    masterGain.connect(outCtx.destination);
+  }
+  if (outCtx.state === 'suspended') outCtx.resume();
+  return outCtx;
+}
+
+function enqueueAgentPcm(b64) {
+  const raw = atob(b64);
+  const n = raw.length >> 1;
+  if (n === 0) return;
+  const float = new Float32Array(n);
+  for (let i = 0; i < n; i++) {
+    let v = raw.charCodeAt(i * 2) | (raw.charCodeAt(i * 2 + 1) << 8);
+    if (v & 0x8000) v -= 0x10000;
+    float[i] = v / 32768;
+  }
+  const ctx = ensureOutCtx();
+  const buf = ctx.createBuffer(1, n, 24000);
+  buf.copyToChannel(float, 0);
+  const src = ctx.createBufferSource();
+  src.buffer = buf;
+  src.connect(masterGain);
+  // 첫 청크는 약간(60ms)의 선행 버퍼를 두고 시작, 이후는 앞 청크 끝에 정확히 이어 붙임
+  const now = ctx.currentTime;
+  if (nextPlayTime < now + 0.02) nextPlayTime = now + 0.06;
+  src.start(nextPlayTime);
+  nextPlayTime += buf.duration;
+  lastAgentAudioEnd = nextPlayTime;
+  activeSources.push(src);
+  src.onended = () => {
+    activeSources = activeSources.filter(x => x !== src);
+    if (activeSources.length === 0) onAgentAudioDrained();
+  };
+}
+
+// 현재 예약된 에이전트 음성이 모두 끝났는지
+function agentAudioPlaying() {
+  return !!(outCtx && outCtx.state !== 'closed' && activeSources.length > 0);
+}
+
+// 인터럽트 시 즉시 중단 (이미 예약된 청크까지 모두 정지)
+function stopAgentAudio() {
+  activeSources.forEach(src => { try { src.onended = null; src.stop(); } catch (e) {} });
+  activeSources = [];
+  nextPlayTime = 0;
+}
+
+// 종료 예약이 걸려 있으면, 마지막 발화 재생이 끝난 뒤에 종료 처리
+let endPending = false;
+function onAgentAudioDrained() {
+  if (endPending) { checkEndAfterTurn(); return; }   // 종료 대기 중이면 마지막 발화 재생까지 끝난 뒤 종료
+  micGated = false;   // 에이전트 음성 재생 완료 → 마이크 수신 재개 (스트림은 계속 켜져 있음)
+  if (!conversationEnded) updateMicUI(true);
+  maybeShowByeMsg();   // 작별 인사 턴의 발화까지 끝났으면 종료 안내 표시
+}
+
+// ================================================================
+// 전사 처리
+// ================================================================
+let agentFallbackText = '';
+
+function onUserTranscript(chunk) {
+  userSpokeInTurn = true;
+  document.getElementById('mic-hint').style.display = 'none';
+  if (!userBubbleEl) appendUserBubble();
+  userTurnText += chunk;
+  userBubbleEl.textContent = userTurnText.trim();
+  scrollChat();
+  // 작별 인사(마지막 턴 종료 메시지) 이후의 첫 유저 발화 — 내용과 무관하게 전사가 도착하면
+  // 에이전트 응답 없이 즉시 종료 (소켓을 먼저 닫아 응답 차단, 종료 안내 문구는 엔드포인트로 전송하지 않음)
+  if (awaitingUserBye) endConversation(true);
+}
+
+function onTurnComplete() {
+  // 에이전트 턴 종료 → 마이크 재개 (VAD가 자동 인식)
+  // 자막 폴백: outputTranscription이 없으면 modelTurn.text 사용
+  if (agentBubbleEl && !agentGotTranscript && agentFallbackText) {
+    processAgentText(agentFallbackText);
+  }
+  // 한 번의 주고받기(학생 발화 → 에이전트 응답) = 1턴
+  if (userSpokeInTurn) {
+    turnsUsed++;
+    updateTurnsDisplay();
+    userSpokeInTurn = false;
+  }
+  userTurnText = '';
+  userBubbleEl = null;
+  agentBubbleEl = null;
+  agentTurnText = '';
+  agentFallbackText = '';
+  agentGotTranscript = false;
+  // 에이전트 턴 종료 → 예약된 음성이 모두 끝나면 마이크 재개 (음성이 없으면 즉시 재개)
+  turnInProg = false;
+  if (!conversationEnded && !endPending) { if (!agentAudioPlaying()) { micGated = false; updateMicUI(true); } }
+  maybeShowByeMsg();
+  // 종료 대기 중이면: 턴 완료 + 재생 완료 후 종료 처리
+  if (endPending) { checkEndAfterTurn(); return; }
+  // 10턴을 모두 사용했다면 서버가 소켓을 닫지 않더라도 종료 처리
+  if (turnsUsed >= MAX_TURNS) { endedByTurns = true; endConversation(); }   // 턴수 소진 종료
+}
+
+// ================================================================
+// 대화 종료 / 정리
+// ================================================================
+// 종료 요청 (종료 문구 "다음에 또 만나요" / 서버의 소켓 종료 / 최대 턴 도달 등 어떤 경로든 동일하게 처리)
+// 종료 문구는 마지막 발화의 텍스트보다 먼저 도착할 수 있다 — 턴이 끝나고(turnComplete)
+// 오디오 재생까지 끝난 뒤에만 종료한다. 그 전에 소켓을 닫으면 발화가 중간에 잘린다.
+function endConversation(immediate) {
+  if (conversationEnded || endPending) return;
+  endPending = true;
+  micGated = true;
+  micOff();   // 마이크는 즉시 완전 차단 (더 이상 입력 받지 않음)
+  if (immediate) {   // 유저 작별 인사 경로: 대기 없이 즉시 — 소켓을 먼저 끊어 에이전트 응답을 원천 차단
+    if (liveSession && liveSession.ws) { try { liveSession.ws.close(); } catch (e) {} }
+    stopAgentAudio();
+  }
+  checkEndAfterTurn();
+  // 안전장치: turnComplete/재생 종료 이벤트가 오지 않아도 최대 15초 후 강제 종료 처리
+  setTimeout(() => { if (!conversationEnded) finalizeEnd(); }, 15000);
+}
+
+// 종료 가능 조건: 에이전트 턴 완료 + 예약된 오디오 재생까지 완료
+function checkEndAfterTurn() {
+  if (endPending && !turnInProg && !agentAudioPlaying()) finalizeEnd();
+}
+
+function finalizeEnd() {
+  if (conversationEnded) return;
+  conversationEnded = true;
+  endPending = false;
+  micGated = true;
+  micOff();
+  if (liveSession && liveSession.ws) { try { liveSession.ws.close(); } catch (e) {} }
+  playSfx('hangup');   // 전화 끊기는 소리
+  if (endedByTurns) {   // 턴수 소진 안내 — 대화창 하단(마지막 요소)에 표시
+    const m = document.getElementById('turns-exhausted-msg');
+    document.getElementById('chat-area').appendChild(m);
+    m.style.display = 'block';
+    scrollChat();
+  }
+  updateConvBottom();
+}
+
+function continueToOutro() {
+  document.getElementById('turns-exhausted-msg').style.display = 'none';
+  document.getElementById('bye-msg').style.display = 'none';
+  goToPage(3);
+}
+
+function teardownLive() {
+  micOff();
+  if (micCtx) { try { micCtx.close(); } catch (e) {} micCtx = null; }
+  if (liveSession && liveSession.ws) {
+    liveSession.ws.onclose = null;
+    try { liveSession.ws.close(); } catch (e) {}
+  }
+  stopAgentAudio();
+  masterGain = null;
+  if (outCtx) { try { outCtx.close(); } catch (e) {} outCtx = null; }
+  document.getElementById('conv-bottom').style.display = 'none';
+}
+
+function updateConvBottom() {
+  const mic = document.getElementById('conv-mic');
+  const retry = document.getElementById('conv-retry');
+  const cont = document.getElementById('conv-continue');
+  mic.style.display = 'none';
+  retry.style.display = 'none';
+  cont.style.display = 'none';
+  if (conversationEnded) { cont.style.display = 'inline-flex'; return; }
+  if (liveFailed) { retry.style.display = 'inline-flex'; return; }
+  if (conversationStarted) { mic.style.display = 'flex'; }
+}
+
+// ================================================================
+// 페이지 이탈 시 정리
+// ================================================================
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    micOff();
+  } else if (currentPage === 2 && conversationStarted && !conversationEnded && !endPending) {
+    micOn();
+  }
+});
+window.addEventListener('pagehide', () => { teardownLive(); });
+window.addEventListener('beforeunload', () => { teardownLive(); });
+
+updateObjectifBanner();
+updateTurnsDisplay();
+</script>
+</body>
+</html>
