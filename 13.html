@@ -457,7 +457,7 @@
 /* ═══════════════════════════════════════
    CONFIG
    ═══════════════════════════════════════ */
-const GEMINI_URL = 'https://coreeno.base44.app/functions/GeminiChatSecure';
+const GEMINI_URL = 'https://coreeno.base44.app/functions/GeminiTransSecure';
 let lessonPermit = null;
 let lessonId = null;
 window.addEventListener("message", (event) => {
@@ -526,30 +526,18 @@ const SENTENCE_AUDIO = {
 };
 
 const EXERCISES = {
-  2: { type: 'repeat', maxAttempts: 1, expected: '열 시에 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  4: { type: 'repeat', maxAttempts: 1, expected: '열 시에 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  6: { type: 'repeat', maxAttempts: 1, expected: '열 시간 동안 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  7: { type: 'repeat', maxAttempts: 1, expected: '열 시간 동안 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  9: { type: 'repeat', maxAttempts: 1, expected: '열 시까지 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  10: { type: 'repeat', maxAttempts: 1, expected: '열 시까지 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  12: { type: 'hide', maxAttempts: 2, expected: '열 시에 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  13: { type: 'hide', maxAttempts: 2, expected: '열 시간 동안 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  14: { type: 'hide', maxAttempts: 2, expected: '열 시까지 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  15: { type: 'trad', maxAttempts: 2, expected: '열 시에 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  16: { type: 'trad', maxAttempts: 2, expected: '열 시간 동안 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  17: { type: 'trad', maxAttempts: 2, expected: '열 시까지 자요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 숫자는 아라비아 숫자를 절대 쓰지 말고 반드시 한글로 표기하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
+  2: { type: 'repeat', maxAttempts: 1, expected: '열 시에 자요' },
+  4: { type: 'repeat', maxAttempts: 1, expected: '열 시에 자요' },
+  6: { type: 'repeat', maxAttempts: 1, expected: '열 시간 동안 자요' },
+  7: { type: 'repeat', maxAttempts: 1, expected: '열 시간 동안 자요' },
+  9: { type: 'repeat', maxAttempts: 1, expected: '열 시까지 자요' },
+  10: { type: 'repeat', maxAttempts: 1, expected: '열 시까지 자요' },
+  12: { type: 'hide', maxAttempts: 2, expected: '열 시에 자요' },
+  13: { type: 'hide', maxAttempts: 2, expected: '열 시간 동안 자요' },
+  14: { type: 'hide', maxAttempts: 2, expected: '열 시까지 자요' },
+  15: { type: 'trad', maxAttempts: 2, expected: '열 시에 자요' },
+  16: { type: 'trad', maxAttempts: 2, expected: '열 시간 동안 자요' },
+  17: { type: 'trad', maxAttempts: 2, expected: '열 시까지 자요' },
 };
 const MSG = {
   SUCCESS_RETRY: 'Très bien, essayons encore une fois.',
@@ -979,9 +967,7 @@ async function processGeminiChat(audioBase64, mimeType, pageNum) {
         { text: "Analyze the audio response." },
         { inline_data: { mime_type: mimeType, data: audioBase64 } }
       ]
-    }],
-    systemInstruction: ex.systemInstruction
-  };
+    }] };
 
   let transcript = "";
   let isPass = false;

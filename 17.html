@@ -375,7 +375,7 @@
 /* ═══════════════════════════════════════
    CONFIG
    ═══════════════════════════════════════ */
-const GEMINI_URL = 'https://coreeno.base44.app/functions/GeminiChatSecure';
+const GEMINI_URL = 'https://coreeno.base44.app/functions/GeminiTransSecure';
 let lessonPermit = null;
 let lessonId = null;
 window.addEventListener("message", (event) => {
@@ -443,30 +443,18 @@ const SENTENCE_AUDIO = {
 };
 
 const EXERCISES = {
-  2: { type: 'repeat', maxAttempts: 1, expected: '저녁에 식당에서 식사를 해요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  4: { type: 'repeat', maxAttempts: 1, expected: '저녁에 식당에서 식사를 해요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  5: { type: 'repeat', maxAttempts: 1, expected: '고기도 먹어요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  7: { type: 'repeat', maxAttempts: 1, expected: '고기도 먹어요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  8: { type: 'repeat', maxAttempts: 1, expected: '채소만 먹어요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  10: { type: 'repeat', maxAttempts: 1, expected: '채소만 먹어요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  11: { type: 'hide', maxAttempts: 2, expected: '저녁에 식당에서 식사를 해요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  12: { type: 'hide', maxAttempts: 2, expected: '고기도 먹어요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  13: { type: 'hide', maxAttempts: 2, expected: '채소만 먹어요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  14: { type: 'trad', maxAttempts: 2, expected: '저녁에 식당에서 식사를 해요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  15: { type: 'trad', maxAttempts: 2, expected: '고기도 먹어요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
-  16: { type: 'trad', maxAttempts: 2, expected: '채소만 먹어요',
-        systemInstruction: "유저의 발화를 한국어로 그대로 전사하라. 점수, 평가, 설명 등 어떤 문구도 덧붙이지 말고 전사값만 답하라." },
+  2: { type: 'repeat', maxAttempts: 1, expected: '저녁에 식당에서 식사를 해요' },
+  4: { type: 'repeat', maxAttempts: 1, expected: '저녁에 식당에서 식사를 해요' },
+  5: { type: 'repeat', maxAttempts: 1, expected: '고기도 먹어요' },
+  7: { type: 'repeat', maxAttempts: 1, expected: '고기도 먹어요' },
+  8: { type: 'repeat', maxAttempts: 1, expected: '채소만 먹어요' },
+  10: { type: 'repeat', maxAttempts: 1, expected: '채소만 먹어요' },
+  11: { type: 'hide', maxAttempts: 2, expected: '저녁에 식당에서 식사를 해요' },
+  12: { type: 'hide', maxAttempts: 2, expected: '고기도 먹어요' },
+  13: { type: 'hide', maxAttempts: 2, expected: '채소만 먹어요' },
+  14: { type: 'trad', maxAttempts: 2, expected: '저녁에 식당에서 식사를 해요' },
+  15: { type: 'trad', maxAttempts: 2, expected: '고기도 먹어요' },
+  16: { type: 'trad', maxAttempts: 2, expected: '채소만 먹어요' },
 };
 const MSG = {
   SUCCESS_RETRY: 'Très bien, essayons encore une fois.',
@@ -868,9 +856,7 @@ async function processGeminiChat(audioBase64, mimeType, pageNum) {
         { text: "Analyze the audio response." },
         { inline_data: { mime_type: mimeType, data: audioBase64 } }
       ]
-    }],
-    systemInstruction: ex.systemInstruction
-  };
+    }] };
 
   let transcript = "";
   let isPass = false;
