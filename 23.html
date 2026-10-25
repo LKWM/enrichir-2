@@ -323,8 +323,32 @@ const EXERCISES = {
   3: { type: 'repeat', maxAttempts: 2, answer: SENTENCES[6] },
   4: { type: 'repeat', maxAttempts: 2, answer: SENTENCES[7] },
   5: { type: 'repeat', maxAttempts: 2, answer: SENTENCES[8] },
-  13: { type: 'speak', maxAttempts: 2, answer: SENTENCES[5] },
-  14: { type: 'speak', maxAttempts: 2, answer: SENTENCES[6] },
+  13: {
+    type: 'speak',
+    maxAttempts: 2,
+    answer: SENTENCES[5],
+    expected: [
+      '누나랑 커피를 마셔요.',
+      '누나와 커피를 마셔요.',
+      '누나하고 커피를 마셔요.',
+      '언니랑 커피를 마셔요.',
+      '언니와 커피를 마셔요.',
+      '언니하고 커피를 마셔요.'
+    ]
+  },
+  14: {
+    type: 'speak',
+    maxAttempts: 2,
+    answer: SENTENCES[6],
+    expected: [
+      '바지와 치마를 사요.',
+      '바지하고 치마를 사요.',
+      '바지랑 치마를 사요.',
+      '치마와 바지를 사요.',
+      '치마하고 바지를 사요.',
+      '치마랑 바지를 사요.'
+    ]
+  },
 };
 
 const TOTAL_PAGES = 16;
@@ -547,7 +571,7 @@ function mcqAnswer(pageNum, btn, idx) {
   }
 }
 
-function evaluateResult(pageNum, isPass, transcript, score) {
+function evaluateResult(pageNum, isPass, transcript, score, bestIdx = 0) {
   const ex = EXERCISES[pageNum];
   const state = pageState[pageNum];
   const micBtn = document.getElementById('mic-' + pageNum);
@@ -582,7 +606,7 @@ function evaluateResult(pageNum, isPass, transcript, score) {
       state.completed = true;
       showFeedback(pageNum, transcript, score, true);
       disableMic(pageNum);
-      revealAnswerText(pageNum);
+      revealAnswerText(pageNum, bestIdx);
       revealAnswerAudio(pageNum);
       const w = ex.answer;
       if (w.audio) audioTimer = setTimeout(() => { playAudio(w.audio); }, 500);
@@ -590,7 +614,7 @@ function evaluateResult(pageNum, isPass, transcript, score) {
       playSfx('wrong');
       if (state.attempts < ex.maxAttempts) {
         // 1회 실패: 정답란 텍스트만 공개
-        revealAnswerText(pageNum);
+        revealAnswerText(pageNum, bestIdx);
         showFeedback(pageNum, transcript, score, false);
         setTimeout(() => {
           if (!state.completed) {
@@ -601,7 +625,7 @@ function evaluateResult(pageNum, isPass, transcript, score) {
       } else {
         // 2회 실패: 정답란 텍스트+오디오 clickable 활성화 (자동 전환 없음)
         state.completed = true;
-        revealAnswerText(pageNum);
+        revealAnswerText(pageNum, bestIdx);
         revealAnswerAudio(pageNum);
         showFeedback(pageNum, transcript, score, false);
         disableMic(pageNum);
@@ -628,7 +652,7 @@ function restoreState(pageNum) {
       showFeedback(pageNum, state.feedback.transcript || '', state.feedback.score, state.feedback.passed);
     }
     if (EXERCISES[pageNum].type === 'speak') {
-      if (state.answerShown) revealAnswerText(pageNum);
+      if (state.answerShown) revealAnswerText(pageNum, state.bestIdx || 0);
       revealAnswerAudio(pageNum);
     }
   }
@@ -929,10 +953,24 @@ async function processGeminiChat(audioBase64, mimeType, pageNum) {
     // Gemini returns ONLY the verbatim transcription (2026-09-07 rule)
     transcript = resultText;
 
-    // 자/모 단위 일치도 — 전사값이 정답의 80% 이상이면 통과
-    score = jamoSimilarity(ex.answer.ko, transcript);
+    // 자/모 단위 일치도 — 제시된 모든 정답 인정, 발화와 가장 유사한 답 선택
+    const candidates = ex.expected ? (Array.isArray(ex.expected) ? ex.expected : [ex.expected]) : [ex.answer.ko];
+    score = 0;
+    let bestIdx = 0;
+    candidates.forEach((cand, i) => {
+      const sc = jamoSimilarity(cand, transcript);
+      if (sc > score) {
+        score = sc;
+        bestIdx = i;
+      }
+    });
+
     isPass = score >= 80;
     geminiErrorStreak = 0;
+
+    if (pageState[pageNum]) {
+      pageState[pageNum].bestIdx = bestIdx;
+    }
 
   } catch (error) {
     console.warn("Gemini API Error:", error);
@@ -941,7 +979,7 @@ async function processGeminiChat(audioBase64, mimeType, pageNum) {
     score = null;
   }
 
-  evaluateResult(pageNum, isPass, transcript, score);
+  evaluateResult(pageNum, isPass, transcript, score, pageState[pageNum]?.bestIdx || 0);
 }
 
 function revealAnswerAudio(pageNum) {
@@ -959,9 +997,14 @@ function playAnswerAudio(pageNum) {
   if (ex && ex.answer && ex.answer.audio) playAudio(ex.answer.audio);
 }
 
-function revealAnswerText(pageNum) {
+function revealAnswerText(pageNum, bestIdx = 0) {
   const el = document.getElementById('answer-' + pageNum);
   if (el) {
+    const ex = EXERCISES[pageNum];
+    if (ex && ex.expected) {
+      const candidates = Array.isArray(ex.expected) ? ex.expected : [ex.expected];
+      el.textContent = candidates[bestIdx] || ex.answer.ko;
+    }
     el.classList.remove('invisible');
     el.classList.remove('clickable');
   }
