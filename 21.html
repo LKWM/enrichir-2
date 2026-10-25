@@ -147,8 +147,7 @@
     <div class="expl-wrap">
       <div class="expl-cards stack">
         <div class="expl-card">
-          <p class="ko expl-ko-sm">(voyelle) + <span class="text-red-500">와</span></p>
-          <p class="ko expl-ko-sm">(consonne) + <span class="text-red-500">과</span></p>
+          <p class="ko expl-ko-sm">(voyelle) + <span class="text-red-500">와</span> / (consonne) + <span class="text-red-500">과</span></p>
           <p class="expl-sub"><span class="text-red-500">et</span></p>
         </div>
         <div class="expl-card card-clickable" onclick="playClickAudio(3, 0)">
@@ -218,12 +217,22 @@
     <div class="expl-wrap">
       <div class="expl-cards stack">
         <div class="expl-card">
-          <p class="ko expl-ko-sm"><span class="text-red-500">와/과</span> vs <span class="text-red-500">하고</span> vs <span class="text-red-500">(이)랑</span></p>
-          <p class="expl-sub"><span class="text-red-500">formel</span> vs <span class="text-red-500">informel</span></p>
+          <div style="display:inline-flex;align-items:flex-start;justify-content:center;gap:0.6vw;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <span class="ko expl-ko-sm"><span class="text-red-500">와/과</span></span>
+              <span class="expl-sub text-red-500">formel</span>
+            </div>
+            <span class="ko expl-ko-sm">vs</span>
+            <span class="ko expl-ko-sm"><span class="text-red-500">하고</span></span>
+            <span class="ko expl-ko-sm">vs</span>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <span class="ko expl-ko-sm"><span class="text-red-500">(이)랑</span></span>
+              <span class="expl-sub text-red-500">informel</span>
+            </div>
+          </div>
         </div>
         <div class="expl-card">
-          <p class="ko expl-ko-sm">(consonne) + <span class="text-red-500">이랑</span></p>
-          <p class="ko expl-ko-sm">(voyelle) + <span class="text-red-500">랑</span></p>
+          <p class="ko expl-ko-sm">(consonne) + <span class="text-red-500">이랑</span> / (voyelle) + <span class="text-red-500">랑</span></p>
         </div>
       </div>
       <p class="expl-text">Il y a encore une particule qui relie deux noms, comme « 와 », « 과 » et « 하고 » : c’est « 이랑 ». Quand il y a une consonne devant, on utilise « 이 » pour faire la liaison, et quand il n’y a pas de consonne devant, on colle directement « 랑 ».</p>
@@ -266,8 +275,7 @@
     <div class="expl-wrap">
       <div class="expl-cards stack">
         <div class="expl-card">
-          <p class="ko expl-ko-sm">(voyelle) + <span class="text-red-500">나</span></p>
-          <p class="ko expl-ko-sm">(consonne) + <span class="text-red-500">이나</span></p>
+          <p class="ko expl-ko-sm">(voyelle) + <span class="text-red-500">나</span> / (consonne) + <span class="text-red-500">이나</span></p>
           <p class="expl-sub"><span class="text-red-500">ou</span></p>
         </div>
         <div class="expl-card card-clickable" onclick="playClickAudio(10, 0)">
@@ -276,7 +284,7 @@
             <p class="ko expl-ko"><span class="text-blue-600">가위</span><span class="text-red-500">나</span> <span class="text-blue-600">칼</span> <span class="text-purple-600">있어요</span>?</p>
           </div>
           <p class="expl-sub"><span class="text-blue-600">ciseaux</span> <span class="text-red-500">ou</span> <span class="text-blue-600">couteau</span> <span class="text-purple-600">avoir</span></p>
-          <p class="expl-sub2">Vous avez des ciseaux ou un couteau ?</p>
+          <p class="expl-sub2">Avez-vous des ciseaux ou un couteau ?</p>
         </div>
       </div>
       <p class="expl-text">« 이나 » est une particule qui indique qu’un seul des éléments énumérés est choisi. Elle correspond à « ou » en français. Ici aussi, s’il y a une consonne finale, on ajoute « 이 » pour permettre la liaison, et s’il n’y en a pas, on ajoute directement « 나 ».</p>
@@ -290,7 +298,7 @@
       <div style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:0.8vh;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);width:100%;gap:1vh;">
         <p class="ko" style="font-size:clamp(1.3rem,max(3.5vw,3.5vh),2.3rem);font-weight:700;text-align:center;"><span class="text-blue-600">가위</span><span class="text-red-500">나</span> <span class="text-blue-600">칼</span> <span class="text-purple-600">있어요</span>?</p>
         <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;"><span class="text-blue-600">ciseaux</span> <span class="text-red-500">ou</span> <span class="text-blue-600">couteau</span> <span class="text-purple-600">avoir</span></p>
-        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;color:#6b7280;font-style:italic;">Vous avez des ciseaux ou un couteau ?</p>
+        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;color:#6b7280;font-style:italic;">Avez-vous des ciseaux ou un couteau ?</p>
         <button class="mic-btn disabled" id="mic-11" onclick="handleMicClick(11)"><i class="ph-fill ph-microphone" style="font-size:var(--btn);"></i></button>
         <div class="feedback-area invisible-fb" id="feedback-11" style="font-size:clamp(0.8rem,max(1.5vw,1.5vh),1rem);font-weight:600;text-align:center;"></div>
       </div>
@@ -354,7 +362,7 @@
           <button onclick="playCardAudio(15)" id="listen-15" class="listen-btn" style="background:none;border:none;cursor:pointer;color:#7c3aed;font-size:clamp(1.5rem,max(3vw,3vh),2rem);padding:0;display:flex;align-items:center;"><i class="ph-fill ph-speaker-high"></i></button>
           <p class="ko" style="font-size:clamp(1.3rem,max(3.5vw,3.5vh),2.3rem);font-weight:700;text-align:center;">가위<span class="blank" data-page="15" data-answer="나">◯</span> 칼 있어요?</p>
         </div>
-        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;color:#6b7280;font-style:italic;">Vous avez des ciseaux ou un couteau ?</p>
+        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;color:#6b7280;font-style:italic;">Avez-vous des ciseaux ou un couteau ?</p>
         <button class="mic-btn disabled" id="mic-15" onclick="handleMicClick(15)"><i class="ph-fill ph-microphone" style="font-size:var(--btn);"></i></button>
         <div class="feedback-area invisible-fb" id="feedback-15" style="font-size:clamp(0.8rem,max(1.5vw,1.5vh),1rem);font-weight:600;text-align:center;"></div>
       </div>
@@ -406,7 +414,7 @@
       <p style="font-size:clamp(0.9rem,max(2.3vw,2.3vh),1.3rem);font-weight:500;line-height:1.7;text-align:center;color:#1e1b2e;">Traduisez la phrase en coréen.</p>
       <div style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:0.8vh;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);width:100%;gap:1vh;">
         <p class="ko" style="font-size:clamp(1.3rem,max(3.5vw,3.5vh),2.3rem);font-weight:700;text-align:center;"><span class="blank" data-page="19" data-answer="가위나">◯◯◯</span> 칼 있어요?</p>
-        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;color:#6b7280;font-style:italic;">Vous avez des ciseaux ou un couteau ?</p>
+        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;color:#6b7280;font-style:italic;">Avez-vous des ciseaux ou un couteau ?</p>
         <button class="mic-btn disabled" id="mic-19" onclick="handleMicClick(19)"><i class="ph-fill ph-microphone" style="font-size:var(--btn);"></i></button>
         <div class="feedback-area invisible-fb" id="feedback-19" style="font-size:clamp(0.8rem,max(1.5vw,1.5vh),1rem);font-weight:600;text-align:center;"></div>
       </div>
