@@ -145,8 +145,8 @@
     <div style="width:95%;max-width:90vw;display:flex;flex-direction:column;gap:1.5vh;">
       <p style="font-size:clamp(0.9rem,max(2.3vw,2.3vh),1.3rem);font-weight:500;line-height:1.7;text-align:center;color:#1e1b2e;">Écoutez et répétez la phrase suivante.</p>
       <div style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:1vh;width:100%;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);">
-        <p class="ko" id="q-3" onclick="playAudio(SENTENCES[5].audio)" style="font-size:clamp(1.3rem,max(3.5vw,3.5vh),2.3rem);font-weight:700;text-align:center;cursor:pointer;">텔레비전도 봐요?</p>
-        <p id="trans-3" style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;color:#6b7280;font-style:italic;">Regardez-vous aussi la télévision ?</p>
+        <p class="ko" id="q-3" onclick="playAudio(SENTENCES[5].audio)" style="font-size:clamp(1.3rem,max(3.5vw,3.5vh),2.3rem);font-weight:700;text-align:center;cursor:pointer;">형은 고기만 좋아해요.</p>
+        <p id="trans-3" style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;color:#6b7280;font-style:italic;">Mon grand frère n’aime que la viande.</p>
         <button class="mic-btn disabled" id="mic-3" onclick="handleMicClick(3)"><i class="ph-fill ph-microphone" style="font-size:var(--btn);"></i></button>
         <div class="feedback-area invisible-fb" id="feedback-3" style="font-size:clamp(0.8rem,max(1.5vw,1.5vh),1rem);font-weight:600;text-align:center;"></div>
       </div>
@@ -193,8 +193,8 @@
     <div style="width:95%;max-width:90vw;display:flex;flex-direction:column;gap:1.5vh;">
       <p style="font-size:clamp(0.9rem,max(2.3vw,2.3vh),1.3rem);font-weight:500;line-height:1.7;text-align:center;color:#1e1b2e;">Écoutez et répétez la phrase suivante.</p>
       <div style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:1vh;width:100%;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);">
-        <p class="ko" id="q-7" onclick="playAudio(SENTENCES[9].audio)" style="font-size:clamp(1.3rem,max(3.5vw,3.5vh),2.3rem);font-weight:700;text-align:center;cursor:pointer;">형은 고기만 좋아해요.</p>
-        <p id="trans-7" style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;color:#6b7280;font-style:italic;">Mon grand frère n’aime que la viande.</p>
+        <p class="ko" id="q-7" onclick="playAudio(SENTENCES[9].audio)" style="font-size:clamp(1.3rem,max(3.5vw,3.5vh),2.3rem);font-weight:700;text-align:center;cursor:pointer;">텔레비전도 봐요?</p>
+        <p id="trans-7" style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;color:#6b7280;font-style:italic;">Regardez-vous aussi la télévision ?</p>
         <button class="mic-btn disabled" id="mic-7" onclick="handleMicClick(7)"><i class="ph-fill ph-microphone" style="font-size:var(--btn);"></i></button>
         <div class="feedback-area invisible-fb" id="feedback-7" style="font-size:clamp(0.8rem,max(1.5vw,1.5vh),1rem);font-weight:600;text-align:center;"></div>
       </div>
@@ -346,11 +346,11 @@ const SENTENCES = [
   { ko: '채소만 먹어요.', fr: 'Je ne mange que des légumes.', audio: audioMap['채소만 먹어요.'] },
   { ko: '영어만 배워요?', fr: 'Apprenez-vous seulement l’anglais ?', audio: audioMap['영어만 배워요?'] },
   { ko: '한국어도 배워요.', fr: 'J’apprends aussi le coréen.', audio: audioMap['한국어도 배워요.'] },
-  { ko: '텔레비전도 봐요?', fr: 'Regardez-vous aussi la télévision ?', audio: audioMap['텔레비전도 봐요?'] },
+  { ko: '형은 고기만 좋아해요.', fr: 'Mon grand frère n’aime que la viande.', audio: audioMap['형은 고기만 좋아해요.'] },
   { ko: '저는 채소도 좋아해요.', fr: 'J’aime aussi les légumes.', audio: audioMap['저는 채소도 좋아해요.'] },
   { ko: '저는 컴퓨터만 써요.', fr: 'Je n’utilise que l’ordinateur.', audio: audioMap['저는 컴퓨터만 써요.'] },
   { ko: '언니는 핸드폰도 써요.', fr: 'Ma grande sœur utilise aussi le portable.', audio: audioMap['언니는 핸드폰도 써요.'] },
-  { ko: '형은 고기만 좋아해요.', fr: 'Mon grand frère n’aime que la viande.', audio: audioMap['형은 고기만 좋아해요.'] },
+  { ko: '텔레비전도 봐요?', fr: 'Regardez-vous aussi la télévision ?', audio: audioMap['텔레비전도 봐요?'] },
 ];
 
 const EXERCISES = {
