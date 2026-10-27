@@ -231,52 +231,31 @@ const EXAMPLES = [
   { ko: '고기랑 야채를 먹어요.', fr: 'Je mange de la viande et des légumes.' },
   { ko: '가위나 칼 있어요?', fr: 'Avez-vous des ciseaux ou un couteau ?' },
 ];
-const CHOSUNG = ['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
-const JUNGSUNG = ['ㅏ','ㅐ','ㅑ','ㅒ','ㅓ','ㅔ','ㅕ','ㅖ','ㅗ','ㅘ','ㅙ','ㅚ','ㅛ','ㅜ','ㅝ','ㅞ','ㅟ','ㅠ','ㅡ','ㅢ','ㅣ'];
-const JONGSUNG = ['','ㄱ','ㄲ','ㄳ','ㄴ','ㄵ','ㄶ','ㄷ','ㄸ','ㄹ','ㄺ','ㄻ','ㄼ','ㄽ','ㄾ','ㄿ','ㅀ','ㅁ','ㅂ','ㅄ','ㅅ','ㅆ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+// #Systeminstruction for Gemini — 24강 실라버스 toggle 원문 그대로 (문제별 키워드 목록은 실라버스에 없음)
+const QUESTION_KEYWORDS = [
+  '누나, 언니, 동생, 친구, 커피, 마시다',
+  '빵, 커피, 사다',
+  '치마, 바지, 사다',
+  '고기, 야채, 채소, 먹다',
+  '가위, 칼, 있다',
+];
 
-function normalizeSpeech(s) {
-  return (s || '').replace(/[^가-힣ㄱ-ㅣA-Za-z0-9]/g, '');
+function systemInstruction(n) {
+  return `#ilnk: ${IMAGES[n]}
+#context: 이 그림에 대한 한국어 학습자의 묘사이다. 발화를 한글로 전사하고 다음 조건에 맞게 10점 만점으로 평가하라. 발화를 하지 않으면 공란으로 출력, 짧거나 이해할 수 없는 발화는 가장 가까운 소리를 한글로 전사한다. 임의로 내용을 생성하거나 교정하지 않고 비문도 그대로 적는다.
+#conditions:
+- 문제의 키워드를 2개 이상 사용해 문법적으로 완전한 문장을 만들어야 10점 가능. (서술어 활용 가능)
+  ${QUESTION_KEYWORDS[n]}
+- 일부 문법상 오류가 있으나 이해가 가능한 수준: 6-9점
+- 단어만 나열하는 경우: 최대 5점
+- 단어만 나열했고 단어가 그림과 일치하지 않는 경우: 최대 2점
+- 문장 형태로 발화했으나 내용이 그림과 일치하지 않는 경우: 3-6점
+- 의미 없는 발화, 이해할 수 없는 문장, 외국어로 발화: 1-3점
+- 전혀 발화를 하지 않은 경우 무조건 0점.
+#output format: "발화값", 점수
+#output format example: "이것은 사과입니다", 10`;
 }
 
-function decomposeJamo(s) {
-  let out = '';
-  for (const ch of normalizeSpeech(s)) {
-    const code = ch.charCodeAt(0);
-    if (code >= 0xAC00 && code <= 0xD7A3) {
-      const base = code - 0xAC00;
-      out += CHOSUNG[Math.floor(base / 588)] + JUNGSUNG[Math.floor((base % 588) / 28)] + JONGSUNG[base % 28];
-    } else {
-      out += ch;
-    }
-  }
-  return out;
-}
-
-function levenshtein(a, b) {
-  const m = a.length, n = b.length;
-  if (m === 0) return n;
-  if (n === 0) return m;
-  let prev = Array.from({ length: n + 1 }, (_, i) => i);
-  let curr = new Array(n + 1);
-  for (let i = 1; i <= m; i++) {
-    curr[0] = i;
-    for (let j = 1; j <= n; j++) {
-      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
-      curr[j] = Math.min(prev[j] + 1, curr[j - 1] + 1, prev[j - 1] + cost);
-    }
-    [prev, curr] = [curr, prev];
-  }
-  return prev[n];
-}
-
-function jamoSimilarity(expected, actual) {
-  const e = decomposeJamo(expected), a = decomposeJamo(actual);
-  if (e.length === 0 && a.length === 0) return 100;
-  if (e.length === 0 || a.length === 0) return 0;
-  const dist = levenshtein(e, a);
-  return Math.round((1 - dist / Math.max(e.length, a.length)) * 100);
-}
 const TOTAL_Q = 5;
 const RECORD_SECONDS = 15;   // 최대 15초
 const AUTO_NEXT_MS = 3000;    // 점수 공개 후 3초 뒤 자동 전환
@@ -346,6 +325,7 @@ function swapToReveal(n) {
 function enterQuestion(n) {
   if (qState[n].done && !qState[n].retrying) return;
   // 이미지 base64 사전 로드 (Gemini 채점 전송용)
+  prefetchImage(n);
   const micBtn = document.getElementById('mic-' + n);
   micBtn.classList.add('disabled');
   setTimeout(() => { if (currentPage === 2 + n && !qState[n].done) startRecording(n); }, 2000);
@@ -454,10 +434,13 @@ async function scoreWithGemini(n, audioBlob) {
   const st = qState[n];
   try {
     const audioBase64 = await blobToBase64(audioBlob);
+    let imageBase64 = null;
+    try { imageBase64 = await getImageBase64(n); } catch (e) { imageBase64 = null; }   // 그림 링크 없으면 오디오만 전송
     const parts = [{ inline_data: { mime_type: 'audio/webm', data: audioBase64 } }];
+    if (imageBase64) parts.unshift({ inline_data: { mime_type: 'image/png', data: imageBase64 } });
     const payload = {
       contents: [{ role: "user", parts }],
-      systemInstruction: "유저의 발화를 한글로 전사하라"
+      systemInstruction: systemInstruction(n)
     };
     if (!lessonPermit || !lessonId) throw new Error('Lesson permit is not available yet.');
     const res = await fetch(GEMINI_URL, {
@@ -467,8 +450,14 @@ async function scoreWithGemini(n, audioBlob) {
     });
     if (!res.ok) throw new Error("API status: " + res.status);
     const data = await res.json();
-    const transcript = (data.text || "").trim();
-    let score = Math.max(0, Math.min(10, Math.round(jamoSimilarity(EXAMPLES[n].ko, transcript) / 10)));
+    const resultText = (data.text || "").trim();
+    // #output format: "발화값", 점수
+    const m = resultText.match(/^[“”"']([^“”"']*)[“”"']\s*,\s*(\d+)\s*$/);
+    if (!m) throw new Error('Bad format: ' + resultText.slice(0, 40));
+    let transcript = m[1].trim();
+    let score = parseInt(m[2], 10);
+    if (isNaN(score)) throw new Error('Bad score');
+    score = Math.max(0, Math.min(10, score));
     if (qState[n].hintUsed) score = Math.max(0, score - 2);   // 힌트 사용: 2점 감점, 최소 0점
     st.transcript = transcript;
     st.score = score;
