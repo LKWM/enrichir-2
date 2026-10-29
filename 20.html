@@ -507,7 +507,6 @@ function updateObjectifBanner() {
   const o = OBJECTIFS[idx];
   const badge = document.getElementById('objectif-badge');
   if (passedGoals[idx]) { badge.textContent = '✅'; badge.classList.add('done'); }
-  else if (failedGoals[idx]) { badge.textContent = '❌'; badge.classList.add('done'); }
   else { badge.textContent = o.n; badge.classList.remove('done'); }
   document.getElementById('objectif-ko').textContent = o.ko;
   document.getElementById('objectif-fr').textContent = o.fr;
@@ -522,8 +521,8 @@ function renderObjectifDropdown() {
     card.className = 'objectif-card';
     card.style.boxShadow = 'none';
     const badge = document.createElement('span');
-    badge.className = 'objectif-badge' + (passedGoals[i] || failedGoals[i] ? ' done' : '');
-    badge.textContent = passedGoals[i] ? '✅' : (failedGoals[i] ? '❌' : o.n);
+    badge.className = 'objectif-badge' + (passedGoals[i] ? ' done' : '');
+    badge.textContent = passedGoals[i] ? '✅' : o.n;
     const cols = document.createElement('div');
     cols.className = 'objectif-cols';
     const ko = document.createElement('p'); ko.className = 'objectif-ko'; ko.textContent = o.ko;
@@ -611,15 +610,8 @@ function goalFailed(n) {
   const idx = n - 1;
   if (idx < 0 || idx >= OBJECTIFS.length || passedGoals[idx] || failedGoals[idx]) return;
   failedGoals[idx] = true;
-  // 실패로 판정된 목표도 대화는 다음 목표로 넘어가므로 ❌를 잠시 보여준 뒤 배너를 다음 목표로 전환
-  if (objectifIndex === idx) {
-    const badge = document.getElementById('objectif-badge');
-    badge.textContent = '❌'; badge.classList.add('done');
-  }
-  const banner = document.getElementById('objectif-banner');
-  banner.classList.remove('goal-glow'); void banner.offsetWidth; banner.classList.add('goal-glow');
-  renderObjectifDropdown();
-  setTimeout(() => { updateObjectifBanner(); }, 4000);
+  // 실패로 판정된 목표도 대화는 다음 목표로 넘어가므로 배너만 다음 목표로 전환 (표시 디자인 추가 없음)
+  updateObjectifBanner();
 }
 
 // ================================================================
