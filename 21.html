@@ -197,8 +197,17 @@
     <div class="expl-wrap">
       <div class="expl-cards stack">
         <div class="expl-card">
-          <p class="ko expl-ko-sm"><span class="text-red-500">와/과</span> vs <span class="text-red-500">하고</span></p>
-          <p class="expl-sub"><span class="text-red-500">formel</span> <span class="text-red-500">informel</span></p>
+          <div style="display:inline-flex;align-items:flex-start;justify-content:center;gap:0.6vw;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <span class="ko expl-ko-sm"><span class="text-red-500">와/과</span></span>
+              <span class="expl-sub text-red-500">formel</span>
+            </div>
+            <span class="ko expl-ko-sm">vs</span>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <span class="ko expl-ko-sm"><span class="text-red-500">하고</span></span>
+              <span class="expl-sub text-red-500">informel</span>
+            </div>
+          </div>
         </div>
         <div class="expl-card card-clickable" onclick="playClickAudio(6, 0)">
           <div style="display:flex;align-items:center;gap:0.5vw;">
@@ -331,9 +340,9 @@
       <div style="background:#f5f3ff;border:0.15vh solid #e9d5ff;border-radius:1.2vw;padding:2vh 3vw;display:flex;flex-direction:column;align-items:center;gap:0.8vh;box-shadow:0 0.4vh 1.5vh rgba(124,58,237,0.08);width:100%;gap:1vh;">
         <div style="display:flex;align-items:center;gap:0.5vw;justify-content:center;">
           <button onclick="playCardAudio(13)" id="listen-13" class="listen-btn" style="background:none;border:none;cursor:pointer;color:#7c3aed;font-size:clamp(1.5rem,max(3vw,3vh),2rem);padding:0;display:flex;align-items:center;"><i class="ph-fill ph-speaker-high"></i></button>
-          <p class="ko" style="font-size:clamp(1.3rem,max(3.5vw,3.5vh),2.3rem);font-weight:700;text-align:center;">커피<span class="blank" data-page="13" data-answer="하고">◯◯</span> 빵을 사요.</p>
+          <p class="ko" style="font-size:clamp(1.3rem,max(3.5vw,3.5vh),2.3rem);font-weight:700;text-align:center;">빵<span class="blank" data-page="13" data-answer="하고">◯◯</span> 커피를 사요.</p>
         </div>
-        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;color:#6b7280;font-style:italic;">J’achète du café et du pain.</p>
+        <p style="font-size:clamp(0.9rem,max(2.2vw,2.2vh),1.3rem);font-weight:500;text-align:center;color:#6b7280;font-style:italic;">J’achète du pain et du café.</p>
         <button class="mic-btn disabled" id="mic-13" onclick="handleMicClick(13)"><i class="ph-fill ph-microphone" style="font-size:var(--btn);"></i></button>
         <div class="feedback-area invisible-fb" id="feedback-13" style="font-size:clamp(0.8rem,max(1.5vw,1.5vh),1rem);font-weight:600;text-align:center;"></div>
       </div>
