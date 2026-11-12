@@ -501,7 +501,7 @@ const EXERCISES = {
 };
 
 // 다음 페이지 진행 게이트가 있는 페이지 (완료 전 Suivant 비활성)
-const GATED = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]);
+const GATED = new Set(Array.from({ length: TOTAL_PAGES - 2 }, (_, i) => i + 1));   // 커버(0)·아웃트로(TOTAL-1) 제외 전 콘텐츠 페이지 잠금
 
 
 /* ═══════════════════════════════════════
